@@ -1,0 +1,13 @@
+<html>
+    <body>
+        <h3>Formulário de Abençoados</h3>
+
+        <form method="post">
+            {% csrf_token %}
+            {{ formulario.as_p }}
+            <button type="submit">Salvar</button>
+        </form>
+        <a href="{% url "pg_inicial" %}"><button>Cancelar</button></a>
+    
+    </body>
+</html>

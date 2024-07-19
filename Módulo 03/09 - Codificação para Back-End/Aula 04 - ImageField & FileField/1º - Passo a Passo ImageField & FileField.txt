@@ -1,0 +1,25 @@
+1º - Passo a Passo ImageField & FileField - Prof. Ramon Ferreira
+
+
+1- Primeiro entre na pasta do Projeto, e abra o arquivo "settings.py". Aqui precisaremos importar a biblioteca "os", coloque o código abaixo juntamente dos outros códigos de importes que estão nas primeiras linhas desse arquivo:
+	==> import os
+
+2- Ainda no arquivo "settings.py", desça até a última linha desse arquivo e insira os códigos abaixo que servem para definir que todos os arquivos de mídias(imagens, pdf...) desse projeto seram salvas nesta pasta chamada "media":
+	==> MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+	    MEDIA_URL = "/media/"
+
+3- Entre no arquivo "urls.py" do projeto, insira os código abaixo para importar as bibliotecas "settings" e "static":
+
+	==> from django.conf import settings
+	    from django.conf.urls.static import static
+
+4- Ainda no urls do projeto, insira o código abaixo para definir a Rota no projeto de onde os arquivos serão salvos. Atente-se que o código abaixo tem apenas 2 linhas, faça uso do copiar e colar:
+	==> if settings.DEBUG:
+    		urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+5- Agora devemos instalar o Pillow, ele é uma biblioteca de processamento de imagens. Rode o comando abaixo no terminal, lembrando de verificar se a "venv" está ativa:
+	==> py -m pip install Pillow
+
+6- Agora podemos usar o models ImageField no arquivo "models.py":
+	==> foto = models.ImageField(upload_to="foto_perfil/")
+

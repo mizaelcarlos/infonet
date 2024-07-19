@@ -1,0 +1,38 @@
+>> 1º - Passo a Passo Criar Projeto Django - Prof. Ramon Ferreira
+
+1- Crie uma pasta usando o Windows Explorer ou o gerenciador de pastas do seu Sistema Operacional. Abra o Visual Studio, clique em "File", depois clique em "Open Folder", navegue até a pasta que você criou e selecione ela. Após isso o seu projeto será todo dentro desta pasta, agora abra o terminal e digite o comando abaixo para criar um Ambiente Virtual onde o seu projeto vai rodar:
+	==> py -m venv venv
+
+2- Executar o Ambiente Virtual passando o código:
+	==> venv/Scripts/activate
+
+3- Instalar o Django no Ambiente Virtual:
+	==> py -m pip install Django
+
+4- Iniciar um novo projeto:
+	==> django-admin startproject nome_do_projeto .
+	
+	(no final do comando tem um " ." [espaço+ponto], ele serve para nao criar o projeto dentro de uma nova pasta, e sim na raiz da pasta que você está)
+
+5- Após ter criado o Projeto você já pode rodar o projeto Django, para isso rode o comando abaixo:
+	==> py manage.py runserver
+
+> Depois de ter rodado o comando abaixo vai aparecer uns textos no terminal e no meio dele vai ter um link parecido com [http://127.0.0.1:8000/], basta segurar a tecla Ctrl do teclado e com o mouse clicar encima desse link, ele vai abrir uma janela no navegador. Na página que abrir você verá um foguete, se é isso que esta vendo, então seu projeto foi criado e está rodando com sucesso.
+
+> Caso você queira encerrar a execução do projeto, basta clicar em algum lugar vazio do terminal e apertar as teclas Ctrl + C, isso vai encerrar a execução e você verá novamente uma linha digitável com o nome (venv) na cor verde novamente.
+
+
+OBS 1: Para Desativar a venv digite o comando:
+	==> deactivate
+
+OBS 2: Para criar uma pasta:
+	==> mkdir nome-pasta
+
+OBS 3: Para entrar em uma pasta:
+	==> cd nome-pasta
+
+OBS 4: Para voltar uma pasta acima:
+	==> cd..
+
+OBS 5: Para listar os arquivos e subpastas de diretorio:
+	==> dir

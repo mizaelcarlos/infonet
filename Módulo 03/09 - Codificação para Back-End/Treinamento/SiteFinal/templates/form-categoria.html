@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{% static "style-formularios.css" %}">
+        <title>Formulário Categoria</title>
+    </head>
+    <body>
+        <a href="{% url "pg_criar_servico" %}">
+            <button>Voltar</button>
+        </a>
+        <h2>Formulário Categoria</h2>
+
+        <form method="post">
+            {% csrf_token %}
+            {{ form_categoria.as_p }}
+            <button type="submit">Salvar</button>
+            <a href="{% url "pg_criar_servico" %}">
+                <button type="button">Cancelar</button>
+            </a>
+        </form>
+
+        <h2>Lista de Categorias</h2>
+
+        {% for categoria in categorias %}
+            <div class="card-formulario">
+                <span>{{ categoria.tipo }}</span>
+                <div class="btns_formulario">
+                    <a href="{% url "pg_editar_categoria" categoria.id %}">
+                        <span>Editar Categoria</span>
+                    </a>
+                    <a href="{% url "pg_excluir_categoria" categoria.id %}">
+                        <span>Excluir Categoria</span>
+                    </a>
+                </div>
+            </div>
+        {% endfor %}
+
+    </body>
+</html>

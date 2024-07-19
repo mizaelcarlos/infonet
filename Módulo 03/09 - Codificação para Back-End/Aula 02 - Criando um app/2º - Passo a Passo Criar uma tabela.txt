@@ -1,0 +1,43 @@
+2º - Passo a Passo Criar uma tabela - Prof. Ramon Ferreira
+
+> Levando em consideração que você já criou um projeto e que já criou um app, partiremos desse ponto para criar uma tabela.
+
+1- Abra a pasta do app que você criou, e nele abra o arquivo "models.py". Para criar uma tabela use o comando "class". Segue o código abaixo:
+
+class Estudante(models.Model):
+
+>> Desta forma criei a tabela "Estudante" herdando a biblioteca "models".
+
+2- Após isso precisa adicionar as colunas desta tabela. Como "class" é um bloco de códigos, dentro dele será inserido o código de cada coluna identado para a direita, segue exemplo:
+
+class Estudante(models.Model):
+	nome = models.CharField(max_length=50)
+
+>> Nesse exemplo foi criado uma tabela chamada "Estudante" e ela tem a coluna "nome", e o tipo desse model é "CharField". Alguns models possuem argumentos obrigatórios, no caso do CharField é obrigado que você defina o valor do argumento "max_length". Esse argumento define a quantidade de caracteres que o texto nesse campo pode conter, no caso foi definido que o usuario pode digitar até 50 caracteres.
+
+3- Antes de sair do arquivo "models", precisamos definir como será rotulado cada objeto criado dessa tabela, caso não for definido, cada objeto será rotulado desta maneira na lista de objetos dessa tabela "Objeto Estudante (1)", onde o número 1 representa o ID do respectivo objeto. Para que cada objeto seja rótulado com o nome do estudante, precisamos adicionar uma "def" dentro da class, como no exemplo abaixo:
+
+class Estudante(models.Model):
+	nome = models.CharField(max_length=50)
+
+	def __str__(self):
+        return self.nome
+
+>> Na linha onde tem o comando "return" ele está retornando o valor "self.nome", onde "self" está se referenciando ao próprio objeto, e que desse objeto quer pegar o valor da variável "nome". Sendo assim se a pessoa digitou "Carlos" no campo "nome" ao criar esse objeto, então esse objeto será rotulado como Carlos.
+
+4- Agora indo para o arquivo "admin.py", você precisa registrar essa tabela que acabou de criar, pois caso você não registre ela não irá aparecer no Django Admin, mas antes de registrar precisa primeiro importar essa tabela la do arquivo "models.py" para este arquivo "admin.py" onde está agora. Para isso precisa passar o comando de importar, abaixo:
+
+from .models import Estudante
+
+>> Assim você esta dizendo que lá no arquivo "models", você quer importar a tabela "Estudante". Após isso você precisa fazer o registro de fato, para isso use o comando abaixo:
+
+admin.site.register(Estudante)
+
+5- Agora basta rodar o comando para coletar todas essas alterações e criações de tabelas e colunas que foram realizadas com o comando abaixo:
+	==> py manage.py makemigrations
+
+6- Feito o comando anterior, ele criará os arquivo de migrações, são os arquivos que coletaram as alterações realizadas e criam instruções de como o banco de dados deve ser alterado, para executar essas instruções rode o comando abaixo:
+	==> py manage.py migrate
+
+7- Por fim, basta rodar o projeto novamente com o comando abaixo:
+	==> py manage.py runserver

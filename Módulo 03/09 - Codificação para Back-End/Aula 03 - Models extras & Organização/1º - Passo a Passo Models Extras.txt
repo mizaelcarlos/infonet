@@ -1,0 +1,27 @@
+1º - Passo a Passo Models Extras - Prof. Ramon Ferreira
+
+> Levando em consideração que você já criou um projeto, e também já criou um app, partiremos desse ponto para criar os models abaixo.
+
+
+1- Model Choices: Este model consiste em um model do tipo CharField convertido para uma lista de opções pré-definidas por você. Primeiro você cria uma tabela(class), dentro dela você vai criar uma Tupla com várias Tuplas dentro(criando assim uma lista de listas), segue abaixo um exemplo:
+
+TIPO_SEXO = (
+        ("M", "Masculino"),
+        ("F", "Feminino")
+    )
+
+>> Acima foi criado uma Tupla que contem como itens a String "M" e a String "Masculino", a mesma coisa vale para a tupla que contém as Strings "F" e "Feminino" como itens. E estas duas Tuplas estão dentro de uma Tupla mãe que está sendo armazenada na variável de nome "TIPO_SEXO". O primeiro item que consiste na inicial da palavra, no caso o "M", esse valor será armazenado no Banco de Dados, já o nome completo "Masculino" será apenas exibido no formulário no Django Admin na hora de criar esse objeto.
+
+>> Após criar essa lista de opções, vamos criar o campo model, segue abaixo o código:
+
+sexo = models.CharField(max_length=2, choices=TIPO_SEXO)
+
+>> Aqui criamos a variável "sexo", e atribuimos a ela o model do tipo CharField. O argumento "max_length" é obrigatório do campo CharField, devemos definir o valor dele com base no tamanho máximo de caracteres do primeiro item da Tupla, no caso a letra "M" e a letra "F", afinal são eles que seram armazenados no banco de dados, como elas tem apenas 1 caractere, podemos colocar o valor do "max_length" em 2 que já será suficiente. Quanto ao argumento "choices", nele vou colocar a variável que contém a lista de opções, no caso a variável "TIPO_SEXO". E assim está finalizado o Model Choices.
+
+
+2- Um campo que aceita números com casas decimais, parecido com o Float, é o DecimalField, é uma ótima opção porque podemos definir certos parametros, segue abaixo:
+
+valor = models.DecimalField(decimal_places=2, max_digits=4)
+
+>> O primeiro argumento "decimal_places" define a quantidade de digitos depois da vírgula.
+>> O segundo argumento "max_digits" define a quantidade de digitos que esse número pode contar, como foi definido 4 digitos, o valor maximo que pode ser atingido é "99.99". Lembrando que se vc definir 2 digitos como casas decimais e 4 digitos como o maximo, então você so poderá usar 2 casas decimais antes da virgula, pois 2 casas decimais ja foram definidas para serem depois da virgula.

@@ -1,0 +1,18 @@
+.card-formulario{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #000;
+    width: fit-content;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+img{
+    border: 1px solid #000;
+}
+
+.btns_formulario{
+    display: flex;
+    flex-direction: row;
+    column-gap: 20px;
+}

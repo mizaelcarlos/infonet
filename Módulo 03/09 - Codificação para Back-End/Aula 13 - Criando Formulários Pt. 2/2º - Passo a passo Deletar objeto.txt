@@ -1,0 +1,91 @@
+2º - Passo a passo Deletar objeto - Prof. Ramon Ferreira
+
+> Para finalizar esse assunto, vamos aprender como deletar um objeto criado. O código se assemelha muito ao de Editar um objeto
+
+1 - Crie um projeto, no exemplo vou chama-lo de "Confeitaria", crie um aplicativo, no exemplo vou chama-lo de "cozinha". Crie uma tabela do banco de dados, o nome vou usar "Bolo". Ela terá como propriedades, "sabor" onde será um campo CharField e "recheio" onde será um campo CharField também.
+
+2 - Configure o projeto para aceitar templates, criando assim a pasta templates e registrando-a.
+
+3 - Vamos criar uma página para confirmar a exclusão de um determinado objeto, mas antes precisamos primeiro criar uma página para listar os objetos cadastrados e a partir dela criar um botão para excluir um objeto. Portanto crie um template simples para listar os objetos da tabela, vou nomeá-lo de "lista-bolos.html":
+
+
+<html>
+    <body>
+        <p>
+            Lista de Bolos:
+        </p>
+        <ul>
+            {% for bolo in bolos %}
+                <li>{{ bolo.sabor }} - <a href="{% url 'conf_excluir_bolo' bolo.id %}">Excluir bolo</a></li>
+            {% endfor %}
+        </ul>
+    </body>
+</html>
+ 
+
+4 - Agora crie a view que vai renderizar essa página, não esquecendo de importar o arquivo models:
+
+
+from .models import *
+
+def VerBolos(request):
+    bolos_lista = Bolo.objects.all()
+    return render(request, "lista-bolos.html", {"bolos": bolos_lista})
+
+
+5 - Por fim precisa criar a url que vai renderizar a view:
+
+
+from django.urls import path
+from .views import *
+
+urlpatterns = [
+    path("", VerBolos, name="pg_bolos"),
+]
+
+
+6 - Não esqueça de registrar a url do aplicativo na url do projeto para finalizar.
+
+7 - Abra o arquivo "views.py". Nele importe o comando "redirect" junto com o render:
+
+
+from django.shortcuts import render, redirect
+
+
+8 - Ainda na "views.py" faremos a função que irá buscar na tabela o objeto a ser excluído e acessar a página para confirmar a exclusão deste. Lembrando que já foi feito a importação do arquivos "models" anteriormente:
+
+
+def ExcluirBolo(request, id_bolo):
+    busca_bolo = Bolo.objects.get(id=id_bolo)
+    if request.method == "POST":
+        busca_bolo.delete()
+        return redirect("pg_bolos")
+    return render(request, "conf_exclusao_bolo.html", {"bolo": busca_bolo})
+
+
+9 - Agora faremos a criação do código HTML no template. Para isso crie um arquivo HTML, no caso como já defini na view para renderizar o template "conf_exclusao_bolo.html" vou usar esse nome.
+
+
+<html>
+    <body>
+        <h1>Confirmar Exclusão</h1>
+        <p>Você tem certeza que deseja excluir o item "{{ bolo.sabor }}" ?</p>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit">Excluir</button>
+            <a href="{% url "pg_bolos" %}"><button type="button">Cancelar</button></a>
+        </form>
+    </body>
+</html>
+
+
+10 - Agora voltando ao arquivo urls do aplicativo, adicione a nova rota para esta página, no final ficará assim:
+
+
+urlpatterns = [
+    path("", VerBolos, name="pg_bolos"),
+    path("excluir-bolo/<int:id_bolo>", ExcluirBolo, name="conf_excluir_bolo")
+]
+
+
+11 - Por fim basta criar a tabela e rodar o projeto.

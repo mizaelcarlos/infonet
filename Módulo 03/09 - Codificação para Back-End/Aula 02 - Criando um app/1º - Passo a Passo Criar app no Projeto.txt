@@ -1,0 +1,21 @@
+1º - Passo a Passo Criar app no Projeto - Prof. Ramon Ferreira
+
+> Levando em consideração que você já criou um projeto, partiremos desse ponto para criar um app.
+
+1- Cria um app no projeto:
+	==> py manage.py startapp nome_do_app
+	
+	OBS: Caso você queira criar um app dentro de uma pasta chamada "apps" para englobar todos os apps dentro dela, siga estes passos OBS: Não precisa desativar o Ambiente Virtual(venv):
+		1- Criar uma pasta chamada "apps":
+			==> mkdir nome_da_pasta
+		2- Navegar para esta pasta:
+			==> cd nome_da_pasta
+		3- Agora passa o comando de criar o app, porém precisa setar o arquivo manage.py que está em uma pasta superior a esta, utilize o "../" antes do nome do arquivo para informar que ele está em uma pasta superior:
+			==> py ../manage.py startapp nome_do_app
+		4- Por fim voltar o terminal para a pasta principal do projeto:
+			==> cd..
+
+2- Registrar o app criado no Projeto:
+	Navegue até a pasta onde se encontra os arquivos do projeto como um todo, procure pelo arquivo "settings.py" e dentro dele busque a lista "INSTALLED_APPS". Nela você vai incluir o nome do app entre aspas simples e colocar uma vírgula no final, ficando assim >>> 'ListaTarefas', <<<.
+	
+	OBS: Caso você tenha criado o app dentro de uma pasta "apps", antes no mome do app você deve colocar o nome da pasta e um ponto(.) separando o nome da pasta e o nome do app, ficando assim >>> 'apps.ListaTarefas', <<<. Outra alteração que você precisa fazer também é ir até a pasta desse app e abrir o arquivo "apps.py", dentro dele procure pela variável "name", no momento ela estará assim >>> name = 'ListaTarefas' <<<, você deve acrescentar o nome da pasta e o ponto antes do nome do app assim como fez no settings.py, ficando assim >>> name = 'apps.ListaTarefas' <<<.

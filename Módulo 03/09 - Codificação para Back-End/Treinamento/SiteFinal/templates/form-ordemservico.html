@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Formulário Ordem de Serviço</title>
+    </head>
+    <body>
+        <a href="{% url "pg_inicial" %}">
+            <button>Voltar</button>
+        </a>
+        <h2>Formulário Ordem de Serviço</h2>
+
+        <form method="post">
+            {% csrf_token %}
+            {{ form_ordemservico.as_p }}
+            <button type="submit">Salvar</button>
+            <a href="{% url "pg_inicial" %}">
+                <button type="button">Cancelar</button>
+            </a>
+        </form>
+
+    </body>
+</html>

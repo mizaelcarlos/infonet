@@ -1,0 +1,79 @@
+2º - Passo a passo criar um Model + View + Template - Prof. Ramon Ferreira
+
+
+1- Crie um Projeto Django de nome "LojaVirtual" e crie um app chamado "produtos". Em models crie uma classe "Produto" e atribua a ela 2 propriedades. A primeira é "nome_produto" do tipo CharField para receber o nome do produto e a segunda é "valor_produto" do tipo DecimalField para receber o valor do produto.
+
+2- No diretório principal do projeto(na altura do manage.py), crie uma pasta chamada "templates", dentro dessa pasta "templates" crie um arquivo HTML e dê um nome a ele, no exemplo será "index.html".
+
+3- Dentro desse arquivo HTML você vai construir sua página web em HTML. Um exemplo é o código abaixo:
+
+<html>
+    <body>
+        <p>
+            Minha lista de Produtos:
+        </p>
+        <ul>
+		<li>Manteiga - R$ 10,25</li>
+                <li>Maça - R$ 2,30</li>
+                <li>Shampoo - R$ 13,48</li>
+        </ul>
+    </body>
+</html>
+
+4- Agora precisamos configurar a pasta "templates", que você criou, para ser reconhecida pelo projeto Django. Para isso vá até a pasta do projeto e abra o arquivo "settings.py", logo nas primeiras linhas onde se encontra um importe, coloque abaixo dele o importe a seguir:
+	==> import os
+
+5- E para concluir a configuração do diretório da pasta template, ainda no arquivo "settings.py", procure a variável "TEMPLATES =", dentro dela procure a chave >> 'DIRS': <<, entre os colchetes que esta nesta chave você vai inserir o caminho a seguir:
+	==> os.path.join(BASE_DIR, 'templates')
+
+	Ao final, a linha ficará desse jeito:
+	==> 'DIRS': [os.path.join(BASE_DIR, 'templates')],
+
+6- Dentro da pasta do app abra o arquivo "views.py", vamos usar o comando "render" que já se encontra importada por padrão no arquivo. Porém precisamos importar o arquivo "models.py" para poder conseguir importar do Banco de Dados os objetos que foram criados usando a classe "Produto" criada no models no primeiro passo.
+	==> from .models import Produto
+
+7- Ainda no arquivo "views.py", crie uma função com o nome que desejar, no caso será usado "VerProdutos", passando(herdando) o objeto "request", pois ele contém informações sobre a solicitação HTTP feita pelo cliente ao servidor. E dentro da função coloque o comando para fazer uma busca no banco de dados do model criado de nome "Produto" e atribua o resultado dessa busca à uma variável que você criar, no exemplo será "produtos_lista". Na linha abaixo insira o comando "return" para retornar o comando "render" para renderizar a página HTML que foi criada anteriormente, dentro vai passar como parâmetros o objeto "request" que tinhamos colocado dentro dos parênteses da função no início, o html criado e um dicionário passando o resultado da busca no banco de dados:
+	==> def VerProdutos(request):
+    		produtos_lista = Produto.objects.all()
+    		return render(request, 'index.html', {'produtos': produtos_lista})
+
+8- Voltando para o arquivo HTML criado de nome "index.html", agora precisamos isolar a parte do código HTML que será repetido quantas vezes for o número de objetos retornados da busca no banco de dados, ao final ele ficará assim:
+
+<html>
+    <body>
+        <p>
+            Minha lista de Produtos:
+        </p>
+        <ul>
+            {% for produto in produtos %}
+                <li>{{ produto.nome_produto }} - R$ {{ produto.valor_produto }}</li>
+            {% endfor %}
+        </ul>
+    </body>
+</html>
+
+9- Na raiz do app criado, crie um novo arquivo e nomei-o como "urls.py", dentro dele você vai importar o comando "path" da biblioteca django.urls:
+	==> from django.urls import path
+
+10- Ainda no arquivo "urls.py", você também ira importar todo o arquivo "views.py" usando o seguinte importe:
+	==> from .views import *
+
+11- Continuando no arquivo "urls.py", crie uma tupla usando o comando urlpatterns, e dentro dele registre um caminho usando o comando "path", dentro do path você passará 2 parâmetros, o primeiro é o que define a URL que o usuário vai acessar no navegador para poder abrir a página do HTML e a segunda é qual função dentro do arquivo "views.py" que você criou será executada:
+	==> urlpatterns = [
+    		path('lista-produtos/', VerProdutos),
+	    ]
+
+12- Agora DENTRO DA PASTA DO PROJETO procure o arquivo "urls.py", nele procure a linha que está fazendo o seguinte importe "from django.urls import path". Ao final dele você vai acrescentar uma vírgula e o comando "include", ficando dessa maneira:
+	==> from django.urls import path, include
+
+13- Ainda no arquivo "urls.py" do projeto, adicione um novo "path"(caminho) na tupla(lista) "urlpatterns" já existente. Nesse path você vai colocar o nome do seu app com uma "/"(barra) no final, para ficar como caminho inicial, em seguida vai incluir o arquivo urls do seu app usando o comando include, e você deve informar o diretório desse urls, seguindo a pasta "apps"(caso tenha criado), depois a pasta do app, no meu exemplo foi "tarefas", e por fim o nome do arquivo, que é urls:
+	==> path('produtos/', include('apps.produtos.urls')),
+	
+	No final ficará assim:
+	==> urlpatterns = [
+    			path('admin/', admin.site.urls),
+    			path('produtos/', include('apps.produtos.urls'))
+		]
+
+14- Por fim, rode o makemigrations, depois o migrate, crie o superuser e suba o servidor com runserver. Depois vá ate o Django Admin e popule o banco de dados que você criou, depois acesse a url abaixo e verá a lista de produtos:
+	==> "http://127.0.0.1:8000/produtos/lista-produtos/"

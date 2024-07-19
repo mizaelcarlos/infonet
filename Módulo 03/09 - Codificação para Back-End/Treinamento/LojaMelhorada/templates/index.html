@@ -1,0 +1,27 @@
+<html>
+    <body>
+        <h3>
+            Lista de Abençoados:
+        </h3>
+
+        <a href="{% url "pg_new_abencoado" %}">Cadastrar Abençoado</a>
+
+        <ul>
+            {% for x in abencoados %}
+                <li>Nome: {{ x.nome }} - Idade: {{ x.idade }}</li>
+            {% endfor %}
+        </ul>
+
+        <h3>
+            Lista de Tacas:
+        </h3>
+
+        <a href="">Cadastrar Taca</a>
+
+        <ul>
+            {% for y in tacas %}
+                <li>{{ y.dono.nome }} - {{ y.motivo }} - {{ y.instrumento }}</li>
+            {% endfor %}
+        </ul>
+    </body>
+</html>

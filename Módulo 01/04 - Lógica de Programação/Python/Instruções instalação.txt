@@ -1,0 +1,9 @@
+Passo a passo para trabalhar com o Python
+
+1 - Tendo o Visual Studio Code instalado no computador, clique na aba extensões e nela procure pela extensão "Python".
+
+2 - Após instalar a extensão do python procure pela extensão "Jupyter" e instale também. (Lembrando que essa extensão não é obrigatória, é uma extensão que trabalha com arquivos python permitindo criar blocos de códigos facilitando o teste de vários códigos em um mesmo arquivo).
+
+3 - Após isso pesquise no Google por "Python". Acesse a página de download do Python, baixe o arquivo de instalação e instale o programa, lembrando de na primeira tela do programa de instalação marcar a caixa que tem o seguinte texto: "Add Python xx to PATH". O "xx" representa a versão do Python que você baixou.
+
+4 - Após isso já poderá trabalhar com arquivos python no VS Code.

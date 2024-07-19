@@ -1,0 +1,28 @@
+2º - Passo a Passo Organização - Prof. Ramon Ferreira
+
+> Caso você queira fazer algumas pequenas organizações no seu Django Admin veja as instruções abaixo. Levando em consideração que você já criou um projeto, e também já criou um app, e também já criou uma tabela(class), sigamos desse ponto.
+
+
+1- Digamos que você criou o seguinte campo abaixo em uma tabela:
+
+preco = models.DecimalField(max_digits=10, decimal_places=2)
+
+>> O nome do rótulo desse campo será o nome da variável que recebe ele, no caso a palavra "preco". Entretanto como não podemos colocar caracteres especiais para definir o nome de uma variável, ele foi escrito assim, trocando o Ç(c sedilha) pelo C(comum). Para que no Django Admin apareça a palavra "Preço" da forma correta de escrita, é necessário fazer uso do argumento "verbose_name", onde o valor dele sera o texto que você quer que apareça, ficará assim:
+
+preco = models.DecimalField(max_digits=10, decimal_places=2, verbose_name="Preço")
+
+
+2- Agora digamos que você criou a tabela abaixo:
+
+class PrecoProdutos(models.Model):
+
+>> Nesse caso sabemos que no Django Admin o nome da tabela será "Preco produtos". Para que ele apareça corretamente como "Preço Produtos" precisaremos fazer uso de uma "classe meta" para definir o "verbose_name" da tabela. Dentro da Class da tabela você vai inserir esse código:
+
+class Meta:
+        ordering = ('pk',)
+        verbose_name = 'Preço Produto'
+        verbose_name_plural = 'Preços Produtos'
+
+>> O argumento "ordering" organiza a lista de objetos desta tabela pela ordem alfabetica fazendo uso do valor "pk", caso você queira que organize pela ordem alfabética ao contrário, basta colocar um sinal de menos na frente desse valor, ficando assim "-pk".
+>> O argumento "verbose_name" serve para definir o novo nome desta tabela.
+>> O argumento "verbose_name_plural" serve para definir o novo nome desta tabela no plural.

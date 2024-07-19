@@ -1,0 +1,56 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{% static "style.css" %}">
+        <title>Elabore Ordens de Serviços</title>
+    </head>
+    <body>
+        <h2>Elabore Ordens de Serviços</h2>
+
+        <div class="div_botoes">
+            <a href="{% url "pg_criar_ordemservico" %}">
+                <button>Ordem de Serviço</button>
+            </a>
+
+            <a href="{% url "pg_criar_cliente" %}">
+                <button>Cliente</button>
+            </a>
+
+            <a href="{% url "pg_criar_empresa" %}">
+                <button>Empresa</button>
+            </a>
+
+            <a href="{% url "pg_criar_servico" %}">
+                <button>Serviço</button>
+            </a>
+
+            <a href="{% url "pg_criar_produto" %}">
+                <button>Produto</button>
+            </a>
+        </div>
+        
+        {% for os in ordemservicos %}
+            <div class="card">
+                <div class="rotulo-card">
+                    <span>{{ os.cliente.nome }}</span>
+                    <span>{{ os.data_servico }}</span>
+                </div>
+                
+                <ul>
+                    {% for servico in os.servico.all %}
+                        <li>{{ servico.tipo_servico }} - R$ {{ servico.valor_servico }} - {{ servico.empresa }}</li>
+                    {% endfor %}
+                </ul>
+                
+                <span class="valor-total">R$ {{ os.valor_total }}</span>
+                <a class="valor-total" href="{% url "pg_excluir_ordemservico" os.id %}">
+                    <span>Excluir OS</span>
+                </a>
+            </div>
+        {% endfor %}
+
+    </body>
+</html>

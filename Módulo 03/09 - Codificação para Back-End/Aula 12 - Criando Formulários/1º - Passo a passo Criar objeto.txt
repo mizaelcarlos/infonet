@@ -1,0 +1,84 @@
+1º - Passo a passo Criar objeto - Prof. Ramon Ferreira
+
+> Neste tutorial você vai aprender como criar formulários no proprio template para que possa evitar o uso do Django Admin para criar/editar/deletar um objeto de uma determinada tabela.
+
+1 - Crie um projeto, no exemplo vou chama-lo de "Escola", crie um aplicativo, no exemplo vou chama-lo de "estudantes". Crie uma tabela do banco de dados, o nome vou usar "Estudante". Ela terá como propriedades, "nome" onde será um campo CharField e "nota_final" onde será um campo "IntegerField".
+
+2 - Configure o projeto para aceitar templates, criando assim a pasta templates e registrando-a.
+
+3 - Na pasta do aplicativo crie um arquivo chamado "forms.py". Dentro dele importe o comando "forms" da biblioteca "django". Em seguida importe todo o arquivo "models":
+
+
+from django import forms
+from .models import *
+
+
+4 - Agora você criará um formulário informando para qual tabela("model") será e quais os campos("fields") que serão criados:
+
+
+class FormularioEstudante(forms.ModelForm):
+    class Meta:
+        model = Estudante
+        fields = ['nome', 'nota_final']
+
+OBS: No campo "fields", ao invés de criar uma tupla com todos as propriedades uma a uma da tabela, basta usar esse comando para selecionar todos de uma vez:
+	==> fields = '__all__'
+
+
+5 - Abra o arquivo "views.py". Nele importe o comando redirect junto com o render, depois todo o arquivo "models" e também todo o arquivo "forms":
+
+from django.shortcuts import render, redirect
+from .models import *
+from .forms import *
+
+
+6 - Ainda na "views.py" faremos a função que tratará de cuidar de mostrar os objetos cadastrados e o formulário com função para salvar:
+
+
+def CriarEstudante(request):
+    busca_estudantes = Estudante.objects.all()
+    if request.method == "POST":
+        novo_estudante = FormularioEstudante(request.POST)
+        if novo_estudante.is_valid():
+            novo_estudante.save()
+            return redirect("pagina_inicial")
+    else:
+        novo_estudante = FormularioEstudante()
+    return render(request, "pagina-estudantes.html", {"formulario": novo_estudante, "estudantes": busca_estudantes})
+
+
+7 - Agora faremos a criação do código HTML no template. Para isso crie um arquivo HTML, no caso como já defini na view para renderizar o template "pagina-estudantes.html" vou usar esse nome.
+
+
+<html>
+    <body>
+        <h3>Formulário de Estudante</h3>
+
+        <form method="post">
+            {% csrf_token %}
+            {{ formulario.as_p }}
+            <button type="submit">Salvar</button>
+            <button type="reset" onclick="resetForm()">Cancelar</button>
+        </form>
+        
+        <h3>
+            Lista de Estudantes:
+        </h3>
+        <ul>
+            {% for estudante in estudantes %}
+                <li>{{ estudante.nome }} - {{ estudante.nota_final }}</li>
+            {% endfor %}
+        </ul>
+
+    </body>
+</html>
+
+
+8 - Agora basta criar o arquivo "urls.py" no aplicativo para criar uma rota que executará a view que criamos, e depois incluir essa rota do aplicativo no arquivo urls do projeto, por fim execute o projeto:
+
+from django.urls import path
+from .views import *
+
+urlpatterns = [
+    path("", CriarEstudante, name="pagina_inicial")
+]

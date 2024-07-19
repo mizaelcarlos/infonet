@@ -1,0 +1,11 @@
+2º - Passo a passo Usar o requirements - Prof. Ramon Ferreira
+
+> No caso de você ter passado o seu projeto para outro computador, sabemos que será necessário criar uma nova máquina virtual, logo, é necessário instalar as bibliotecas novamente. Este passo a passo ensina isso.
+
+1 - Crie uma máquina virtual e ative-a.
+
+2 - Rode o comando abaixo para instalar as bibliotecas listadas dentro do arquivo requirements na sua respectiva versão:
+
+	=> pip install -r requirements.txt
+
+3 - Agora basta criar o banco de dados e executar o projeto.

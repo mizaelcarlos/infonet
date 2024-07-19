@@ -1,0 +1,19 @@
+>> 2º - Passo a Passo Acessar o Django Admin - Prof. Ramon Ferreira
+
+Levando em consideração que você parou no passo 5 do tutorial anterior(1º - Passo a Passo Criar Projeto Django), precisamos antes de tudo encerrar a execução do projeto(se ele não estiver rodando não precisa fazer isso), para isso basta clicar em algum lugar vazio do terminal e apertar as teclas Ctrl + C, isso vai encerrar a execução e você verá novamente uma linha digitável com o nome (venv) na cor verde novamente.
+
+Para ter acesso ao Django Admin você precisa primeiro criar as tabelas básicas do Django(tabela de usuario por exemplo), e depois criar um super usuário, que terá acesso a todas as funcionalidades, segue os passos abaixo.
+
+1- Para criar as primeiras tabelas do Banco de Dados logo após ter criado o projeto digite:
+	==> py manage.py migrate
+
+2- Agora para criar um Super Usuário para acessar o Django Admin:
+	==> py manage.py createsuperuser
+	
+	Após ter rodado esse comando ele fará uma série de questionamentos, primeiro ele vai pedir o "username", que é o nome de usuario que você utilizará para fazer o login, basta digitar o nome desejado e apertar na tecla Enter. Depois vai pedir "email", nao precisa digitar, apenas aperte Enter. Depois vai pedir o "password" que é a senha, basta digitar e apertar Enter, lembrando que ao digitar a senha, nao vai aparecer os caracteres q vc esta digitando por segurança. Depois vai pedir para inserir o "password" novamente para confirmar. E por fim ele pode informar que sua senha é fraca, ou que é muito facil de descobrir, e ele vai perguntar se você quer continuar com ela, basta digitar "Y" para sim ou "N" para não e dar Enter e encerrará.
+
+3- Após ter criado o super usuario, basta rodar o projeto novamente usando o comando:
+	==> py manage.py runserver
+
+4- Caso queira acessar o Admin, basta no final da URL do projeto la no navegador, após o simbolo "/", digite a palavra "admin", ficando assim:
+		==> http://127.0.0.1:8000/admin

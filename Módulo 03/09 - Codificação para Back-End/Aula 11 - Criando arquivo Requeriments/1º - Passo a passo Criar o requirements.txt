@@ -1,0 +1,13 @@
+1º - Passo a passo Criar o requirements - Prof. Ramon Ferreira
+
+> Este comando gera um arquivo requirements.txt com todas as bibliotecas e suas versões atualmente instaladas no seu ambiente virtual. Útil para quando for rodar esse projeto em outra máquina onde será preciso criar uma outra Máquina Virtual, facilitando assim a instalação das bibliotecas usadas no projeto.
+
+> Após instalar as bibliotecas necessárias para seu projeto e certificar de que ele esta funcionando corretamente, siga os passos abaixo.
+
+1 - Caso a máquina virtual não esteja ativada, ative-a.
+
+2 - Rode o comando abaixo para criar o arquivo requirements:
+
+	=> pip freeze > requirements.txt
+
+3 - Agora basta ir na raiz do projeto e identificar o arquivo criado de nome "requirements.txt". E está concluído.

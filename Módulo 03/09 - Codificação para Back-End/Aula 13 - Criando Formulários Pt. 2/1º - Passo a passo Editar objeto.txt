@@ -1,0 +1,117 @@
+1º - Passo a passo Editar objeto - Prof. Ramon Ferreira
+
+> Agora que já aprendeu a fazer um formulário de como criar um objeto, vamos aprender de como criar um formulário para editar um objeto. É muito simples, utilizaremos do mesmo código html do template de criar um objeto, a diferença estará na View e na URL, pois estes vão se assemelhar ao código do passo a passo de como ver detalhes de um objeto.
+
+1 - Crie um projeto, no exemplo vou chama-lo de "Hospital", crie um aplicativo, no exemplo vou chama-lo de "repouso". Crie uma tabela do banco de dados, o nome vou usar "Paciente". Ela terá como propriedades, "nome" onde será um campo CharField e "idade" onde será um campo "IntegerField".
+
+2 - Configure o projeto para aceitar templates, criando assim a pasta templates e registrando-a.
+
+3 - Antes de seguir com os passos para criar uma página de edição, precisamos primeiro criar uma página para listar os objetos cadastrados e a partir dela criar um link para acessar a página de editar um determinado objeto. Portanto crie um template simples para listar os objetos da tabela, vou nomeá-lo de "lista-pacientes.html":
+
+
+<html>
+    <body>
+        <p>
+            Lista de Pacientes:
+        </p>
+        <ul>
+            {% for paciente in pacientes %}
+                <li>{{ paciente.nome }} - <a href="{% url 'pg_editar_paciente' paciente.id %}">Editar paciente</a></li>
+            {% endfor %}
+        </ul>
+    </body>
+</html>
+ 
+
+4 - Agora crie a view que vai renderizar essa página, não esquecendo de importar o arquivo models:
+
+
+from .models import *
+
+def VerPacientes(request):
+    pacientes_lista = Paciente.objects.all()
+    return render(request, "lista-pacientes.html", {"pacientes": pacientes_lista})
+
+
+5 - Por fim precisa criar a url que vai renderizar a view:
+
+
+from django.urls import path
+from .views import *
+
+urlpatterns = [
+    path("", VerPacientes, name="pagina_inicial"),
+]
+
+
+6 - Não esqueça de registrar a url do aplicativo na url do projeto para finalizar.
+
+7 - IMPORTANTE: CASO VOCÊ JÁ TENHA CRIADO O FORMULÁRIO PARA CRIAR UM OBJETO, NÃO PRECISA CRIAR NOVAMENTE UM FORMULÁRIO PARA EDITAR POIS É UTILIZADO O MESMO FORMULÁRIO. CASO TENHA CRIADO, PULE OS PASSOS 7 E 8.
+
+> Na pasta do aplicativo crie um arquivo chamado "forms.py". Dentro dele importe o comando "forms" da biblioteca "django". Em seguida importe todo o arquivo "models":
+
+
+from django import forms
+from .models import *
+
+
+8 - Agora você criará um formulário informando para qual tabela("model") será e quais os campos("fields") que serão criados:
+
+
+class FormularioPaciente(forms.ModelForm):
+    class Meta:
+        model = Paciente
+        fields = '__all__'
+
+
+9 - Abra o arquivo "views.py". Nele importe o comando "redirect" junto com o render, depois importe todo o arquivo "forms", lembrando que já importou o "models" anteriormente:
+
+from django.shortcuts import render, redirect
+from .forms import *
+
+
+10 - Ainda na "views.py" faremos a função que irá buscar o objeto a ser editado e gerar o formulário para poder editá-lo:
+
+
+def EditarPaciente(request, id_paciente):
+    busca_paciente = Paciente.objects.get(id=id_paciente)
+    if request.method == "POST":
+        paciente_editado = FormularioPaciente(request.POST, instance=busca_paciente)
+        if paciente_editado.is_valid():
+            paciente_editado.save()
+            return redirect('pagina_inicial')
+    else:
+        paciente_editado = FormularioPaciente(instance=busca_paciente)
+    return render(request, "pagina-paciente.html", {"formulario": paciente_editado})
+
+
+11 - CASO VOCÊ JÁ TENHA CRIADO A PÁGINA DE CRIAR UM OBJETO, VOCÊ PODE USAR ESTA MESMA PÁGINA PARA A DE EDIÇÃO.
+
+> Agora faremos a criação do código HTML no template. Para isso crie um arquivo HTML, no caso como já defini na view para renderizar o template "pagina-paciente.html" vou usar esse nome.
+
+
+<html>
+    <body>
+        <h3>Formulário de Paciente</h3>
+
+        <form method="post">
+            {% csrf_token %}
+            {{ formulario.as_p }}
+            <button type="submit">Salvar</button>
+            <a href="{% url 'pagina_inicial' %}"><button type="button">Cancelar</button></a>
+        </form>
+
+    </body>
+</html>
+
+
+12 - Agora voltando ao arquivo urls do aplicativo, adicione a nova rota para esta página, no final ficará assim:
+
+
+urlpatterns = [
+    path("", VerPacientes, name="pagina_inicial"),
+    path("editar-paciente/<int:id_paciente>/", EditarPaciente, name="pg_editar_paciente")
+]
+
+
+13 - Por fim basta criar a tabela e rodar o projeto.

@@ -1,0 +1,97 @@
+1º - Passo a passo Configurar herança de template - Prof. Ramon Ferreira
+
+
+> Levando em consideração que você já tem um projeto, um app e um sistema de MVT funcionando, continue desse ponto.
+
+1 - Crie um arquivo HTML como exemplo abaixo, nomei-o como "base.html":
+
+
+<html>
+    <body>
+        <h2>
+            Mercado Virtual 2.0
+        </h2>
+
+        <p>
+            Página Inicial
+        </p>
+
+        <p>
+            Bem-vindo a Loja!
+        </p>
+
+    </body>
+</html>
+
+
+2 - Ainda no arquivo "base.html", substitua o texto que define a página por um "block" que nada mais é do que um espaço reservado para receber um texto ou qualquer outra informação ou dado que será definido pelo usuário. Essa informação virá de outra página html que iremos definir adiante. A palavra "titulo" e "conteudo" são os rótulos de cada "block", atente-se de que o rótulo deve ser um nome único, não pode criar mais de um com o mesmo nome:
+
+
+<html>
+    <body>
+        <h2>
+            Mercado Virtual 2.0
+        </h2>
+        
+        {% block titulo %} {% endblock %}
+
+        {% block conteudo %} {% endblock %}
+
+    </body>
+</html>
+
+
+3 - Agora crie uma outra página chamada "index.html", nela você sempre deve usar uma tag "extends" para informar que você esta extendendo o template que esta no arquivo "base.html", depois crie novamente os mesmos blocks criados no passo anterior, a diferença é que aqui você vai colocar no meio das chaves do block o conteúdo que deve aparecer, segue o código abaixo:
+
+
+{% extends "base.html" %}
+
+{% block titulo %}
+        <p>
+            Página Inicial
+        </p>
+{% endblock %}
+
+{% block conteudo %}
+        <p>
+            Bem-vindo a Loja!
+        </p>
+{% endblock %}
+
+
+4 - Agora basta criar outros arquivos HTML como esse do "index.html", chamando o arquivo "base.html" com o comando "extends" e colocando o texto que será colocado no lugar do "block titulo". No exemplo abaixo crie um arquivo e nomei-o como "login.html" e coloque o código abaixo:
+
+
+{% extends "base.html" %}
+
+{% block titulo %} 
+        <p>
+            Página de login
+        </p>
+{% endblock %}
+
+{% block conteudo %} 
+        <p>
+            Preencha e-mail e senha para realizar seu login.
+        </p>
+{% endblock %}
+
+
+5 - Para criar mais um último exemplo, crie um arquivo e nomei-o como "produtos.html" e coloque o código abaixo:
+
+
+{% extends "base.html" %}
+
+{% block titulo %}
+        <p>
+            Página de Produtos
+        </p>
+{% endblock %}
+
+{% block conteudo %}
+        <p>
+            Abaixo veja nossa lista de produtos.
+        </p>
+{% endblock %}
+
+

@@ -1,0 +1,35 @@
+1º - Passo a passo Configurar Arquivos Estáticos - Prof. Ramon Ferreira
+
+
+> Levando em consideração de que você já fez um projeto Django, um app, e um template, sigamos:
+
+1- Crie uma pasta chamada "static" na raiz do projeto e nela coloque os arquivos estaticos que deseja, por exemplo um arquivo CSS ou um JS.
+
+2- No arquivo "settings.py", porém no final do arquivo, defina a pasta onde você irá colocar os arquivos personalizados do seu projeto:
+	=> STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
+
+3- Ainda no arquivo "settings.py", porém no final do arquivo, defina a pasta onde os arquivos estáticos serão coletados durante a execução de "collectstatic":
+	=> STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+4- Também no arquivo "settings.py", porém no final do arquivo, defina a URL base para os arquivos estáticos.
+	=> STATIC_URL = '/static/'
+
+5- No seu template HTML, carregue os arquivos estáticos usando a tag {% load static %} no início do seu arquivo. Em seguida, use a função static para gerar URLs para seus arquivos estáticos, siga o exemplo abaixo:
+
+
+{% load static %}
+<HTML>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <BODY>
+        <P>
+            Minha lista de Produtos:
+        </P>
+        <ul>
+                <li>Manteiga - R$ 10,25</li>
+        </ul>
+    </BODY>
+</HTML>
+
+
+6- Sempre que você adicionar ou modificar arquivos estáticos, execute o comando collectstatic para coletar esses arquivos na pasta definida em STATIC_ROOT:
+	=> py manage.py collectstatic

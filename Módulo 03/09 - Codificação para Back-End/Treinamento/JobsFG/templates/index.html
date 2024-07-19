@@ -1,0 +1,21 @@
+<html>
+    <body>
+        <h3>
+            Lista de Vagas:
+        </h3>
+
+        <a href="{% url "pg_criar_vaga" %}">
+            <button>+ Vaga</button>
+        </a>
+        
+        {% for vaga in vagas %}
+            <a href="{% url "pg_detalhes" vaga.id %}">
+                <div style="border: 1px solid #000; width: fit-content; color: #000; text-decoration: none;">
+                    <p>{{ vaga.titulo }}</p>
+                    <img src="{{ vaga.capa.url }}" width="250" height="auto">
+                </div>
+            </a>
+        {% endfor %}
+        
+    </body>
+</html>

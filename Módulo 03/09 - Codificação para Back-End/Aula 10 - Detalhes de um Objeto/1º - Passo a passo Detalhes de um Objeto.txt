@@ -1,0 +1,94 @@
+1º - Passo a passo Detalhes de um Objeto - Prof. Ramon Ferreira
+
+> Este Passo a passo ensina como criar uma página extra que serve para ver os detalhes de um único objeto que estava listado em uma lista em outra página.
+
+
+1 - Crie um aplicativo chamado "vitrine". Crie uma tabela do banco de dados. O nome será "Produto". Terá como propriedades "nome_produto" onde será um campo CharField e "valor_produto" onde será um campo "DecimalField".
+
+2 - Configure o projeto para aceitar templates, criando assim a pasta templates e registrando-a.
+
+3 - Crie um arquivo HTML na pasta "templates" com o código abaixo, nomei-o como "lista-produtos.html":
+
+
+<html>
+    <body>
+        <p>
+            Minha lista de Produtos:
+        </p>
+        <ul>
+            {% for produto in produtos %}
+                <li>{{ produto.nome_produto }} - <a href="{% url 'detalhes_produto' produto.id %}">Ver produto</a></li>
+            {% endfor %}
+        </ul>
+    </body>
+</html>
+
+
+4 - Agora no arquivo "views.py" na pasta do aplicativo, importe todo o arquivo "models". Após isso crie uma função para renderizar a página criada acima listando os objetos como de costume:
+
+
+def VerProdutos(request):
+    produtos_lista = Produto.objects.all()
+    return render(request, "lista-produtos.html", {"produtos": produtos_lista})
+
+
+5 - Depois crie o arquivo "urls.py" dentro da pasta do aplicativo. E também como de costume importe o comando "path", importe o arquivo "views.py" todo e crie a tupla do "urlpatterns" criando o caminho dessa pagina e atribuindo já um nome a essa rota:
+
+
+from django.urls import path
+from .views import *
+
+urlpatterns = [
+    path("", VerProdutos, name="pagina_inicial"),
+]
+
+
+6 - Para finalizar a configuração das rotas, no arquivo "urls.py" DO PROJETO, importe o comando "include" e faça a inclusão das rotas do urls do aplicativo no urls do projeto:
+
+
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path("", include("apps.vitrine.urls"))
+]
+
+
+7 - Agora faremos a segunda página que mostraremos os detalhes do produto. Crie na pasta templates um arquivo chamado "detalhes_produto.html", e coloque o código abaixo. Note que não fiz uso do comando "for" para percorrer uma lista, pois estaremos visualizando nesta página apenas um único produto:
+
+
+<html>
+    <body>
+        <a href="{% url "pagina_inicial" %}">Voltar</a>
+
+        <p>
+            Detalhes do Produto:
+        </p>
+
+        <p>
+            {{ produto.nome_produto }} - R$ {{ produto.valor_produto }}
+        </p>
+    </body>
+</html>
+
+
+8 - Agora volte para o arquivo "views.py" do aplicativo e crie a função para este template. Diferente do outro, passaremos o parâmetro "id_produto" entre parênteses juntamente do "request". Dentro da função o comando para busca na tabela não será mais usando o comando "all()" para buscar todos os objetos, mas sim o "get()" para obter apenas um objeto. Dentro do comando "get" está sendo feito um filtro na coluna "id" da tabela e pesquisando pelo valor do "id_produto" que será enviado pela URL. E o comando "return render" segue igual ao demais.
+
+
+def DetalhesProduto(request, id_produto):
+    busca = Produto.objects.get(id=id_produto)
+    return render(request, "detalhes_produto.html", {"produto": busca})
+
+
+9 - Novamente no arquivo "urls.py" DO APLICATIVO. Adicione uma nova rota dentro da "urlpatterns" já existente. Esta segunda rota é idêntica as demais, com o acréscimo de uns caracteres no endereço da rota, no caso o "/<int:id_produto>/". Este comando serve para informar que um número inteiro será colocado juntamente da URL. Ficará assim ao fim. 
+
+
+urlpatterns = [
+    path("", VerProdutos, name="pagina_inicial"),
+    path("ver_produto/<int:id_produto>/", DetalhesProduto, name="detalhes_produto")
+]
+
+
+10 - Agora basta rodar o projeto, alimentar o banco de dados, depois acessar a página principal do projeto, e estará listado os produtos. Ao lado de cada produto tem um link que leva para os detalhes do respectivo produto.
+

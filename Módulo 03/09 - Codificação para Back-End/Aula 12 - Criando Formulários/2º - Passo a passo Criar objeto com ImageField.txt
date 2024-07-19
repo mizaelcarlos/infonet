@@ -1,0 +1,21 @@
+2º - Passo a passo Criar objeto com ImageField - Prof. Ramon Ferreira
+
+> Uma vez que você já aprendeu como criar um objeto simples, agora aprenderá como criar um objeto que possua um campo para fazer upload de alguma imagem(ImageField) ou arquivo(FileField).
+
+1 - Construa todo o código que construiu no passo a passo anterior, precisaremos fazer apenas dois acréscimos de código simples. Abra o template HTML, e busque pela linha onde abre a tag do formulário, no caso essa abaixo:
+
+	==> <form method="post">
+
+	Você acrescentará o parâmetro "enctype" com o valor "multipart/form-data", ficará assim ao final:
+
+	==> <form method="post" enctype="multipart/form-data">
+
+2 - Agora abra o arquivo "views.py" e busque pelo código abaixo nele:
+
+	==> novo_estudante = FormularioEstudante(request.POST)
+
+	Você acrescentará o request que coleta um arquivo que tenha feito o upload, no caso o "request.FILES", ao final ficará assim:
+
+	==> novo_estudante = FormularioProduto(request.POST, request.FILES)
+
+3 - Não esqueça de criar esse model "FileField" ou "ImageField" no arquivo "models.py".

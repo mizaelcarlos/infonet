@@ -1,0 +1,29 @@
+1º - Passo a passo criar um URL + View - Prof. Ramon Ferreira
+
+> Levando em conta que você já fez um projeto, e já criou um app, sigamos:
+
+1- Dentro de um app abra o arquivo "views.py". Primeiro importe o comando "HttpResponse" da biblioteca "django.http" dessa maneira:
+	==> from django.http import HttpResponse
+
+2- Ainda no arquivo "views.py", crie uma função chamada "saudacao" passando o objeto "request", pois ele contém informações sobre a solicitação HTTP feita pelo cliente ao servidor. E dentro da função coloque para retornar um comando "HttpResponse" que retorna uma string definida por você:
+	==> def saudacao(request):
+    		return HttpResponse("Olá mundo!!!")
+
+3- Crie dentro da pasta desse app um novo arquivo e nomei-o como "urls.py", dentro dele você vai importar o comando "path" da biblioteca django.urls:
+	==> from django.urls import path
+
+4- Ainda no arquivo "urls.py", você também ira importar todo o arquivo "views.py" usando o seguinte importe:
+	==> from .views import *
+
+5- Continuando no arquivo "urls.py", crie uma tupla usando o comando urlpatterns, e dentro dele registre o caminho usando o comando "path", que define a URL que o usuario vai acessar no navegador e qual função que você criou dentro do arquivo views será executada:
+	==> urlpatterns = [
+    		path('apresentacao/', saudacao)
+	    ]
+
+6- Agora dentro da pasta do projeto procure o arquivo "urls.py", nele procure a linha que está fazendo o seguinte importe "from django.urls import path". Ao final dele você vai acrescentar uma virgula e o comando "include", ficando dessa maneira:
+	==> from django.urls import path, include
+
+7- Ainda no arquivo "urls.py" do projeto, adicione um novo "path" à tupla "urlpatterns" já existente. Nesse path você vai colocar o nome do seu app para ficar como caminho inicial em seguida vai incluir o arquivo urls do seu app usando o comando include, e você deve informar o diretorio desse urls, seguindo a pasta "apps"(caso tenha criado), depois a pasta do app, no meu exemplo foi "tarefas", e por fim o nome do arquivo, que é urls:
+	==> path('tarefas/', include('apps.tarefas.urls'))
+
+8- Por fim, suba o servidor e acesse a url "http://127.0.0.1:8000/tarefas/apresentacao" e irá lhe aparecer o texto criado la na view.

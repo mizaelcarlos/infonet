@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{% static "style-formularios.css" %}">
+        <title>Formulário Cliente</title>
+    </head>
+    <body>
+        <a href="{% url "pg_inicial" %}">
+            <button>Voltar</button>
+        </a>
+        <h2>Formulário Cliente</h2>
+
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form_cliente.as_p }}
+            <button type="submit">Salvar</button>
+            <a href="{% url "pg_inicial" %}">
+                <button type="button">Cancelar</button>
+            </a>
+        </form>
+
+        <h2>Lista de Clientes</h2>
+
+        {% for cliente in clientes %}
+            <div class="card-formulario">
+                <img src="{{ cliente.foto.url }}" width="150" height="auto">
+                <span>{{ cliente.nome }}</span>
+                <span><b>Data nascimento:</b> {{ cliente.data_nascimento }}</span>
+                <div class="btns_formulario">
+                    <a href="{% url "pg_editar_cliente" cliente.id %}">
+                        <span>Editar Cliente</span>
+                    </a>
+                    <a href="{% url "pg_excluir_cliente" cliente.id %}">
+                        <span>Excluir Cliente</span>
+                    </a>
+                </div>
+            </div>
+        {% endfor %}
+
+    </body>
+</html>

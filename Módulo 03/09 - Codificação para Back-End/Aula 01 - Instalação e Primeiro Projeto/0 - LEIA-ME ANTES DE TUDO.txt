@@ -1,0 +1,17 @@
+Antes de iniciar qualquer coisa no Back-end é necessário instalar o Python no Computador.
+
+-> Instalação Python:
+
+1º - Acesse o site: https://www.python.org/downloads/
+
+2º - Baixe a última versão lançada clicando no botão amarelo informando "Download Python x", onde "x" informa a versão que será feito o download.
+
+3º - Inicie o instalador e antes de qualquer coisa marque a caixa de seleção com o seguinte texto, "Add python.exe to PATH". Isso fará com que o sistema operacional localize e execute o interpretador Python de qualquer diretório no seu sistema, sem que você precise especificar explicitamente o caminho completo até o arquivo.
+
+4º - Após isto basta clicar em "Install Now".
+
+5º - Para conferir se o python foi instalado, acesse o menu iniciar do windows e procure por "CMD", abra-o e digite "py --version", se retornar o nome Python seguido da versão, isto conclui a instalação dele.
+
+6º - Agora abra o Visual Studio, clique na aba "Extensões" a esquerda da tela, e na caixa de busca procure por "Python", o primeiro resultado clique nele e instale-o, depois procure a extensão complementar para estilizar as cores do código, busque por "Pylance", instale-o também.
+
+7º - Por fim, ainda na aba de "Extensões" do Visual Studio, procure também por "Django" e instale essa extensão também.

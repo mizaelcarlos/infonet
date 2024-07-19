@@ -1,0 +1,52 @@
+1º - Passo a passo criar um View + Template - Prof. Ramon Ferreira
+
+
+> Levando em consideração de que você já fez um projeto Django, e um app, sigamos:
+
+1- No diretório principal do projeto(na altura do manage.py), crie uma pasta chamada "templates", dentro dessa pasta "templates" crie um arquivo HTML e dê um nome a ele, no exemplo será "ola_mundo.html".
+
+2- Dentro desse arquivo HTML você vai construir sua página web em HTML. Um exemplo é o código abaixo:
+
+<html>
+    <body>
+        <h1>Olá Mundo!!!</h1>
+    </body>
+</html>
+
+3- Agora precisamos configurar a pasta "templates", que você criou, para ser reconhecida pelo projeto Django. Para isso vá até a pasta do projeto e abra o arquivo "settings.py", logo nas primeiras linhas onde se encontra um importe, coloque abaixo dele o importe a seguir:
+	==> import os
+
+4- E para concluir a configuração do diretório da pasta template, ainda no arquivo "settings.py", procure a variável "TEMPLATES =", dentro dela procure a chave >> 'DIRS': <<, entre os colchetes que esta nesta chave você vai inserir o caminho a seguir:
+	==> os.path.join(BASE_DIR, 'templates')
+
+	Ao final, a linha ficará desse jeito:
+	==> 'DIRS': [os.path.join(BASE_DIR, 'templates')],
+
+5- Dentro da pasta do app abra o arquivo "views.py", vamos usar o comando "render" que já se encontra importada por padrão no arquivo. Crie uma função "saudacao" passando o objeto "request", pois ele contém informações sobre a solicitação HTTP feita pelo cliente ao servidor. E dentro da função use o comando "return" para retornar um comando "render" para renderizar a página HTML que foi criada anteriormente:
+	==> def saudacao(request):
+    		return render(request, 'ola_mundo.html')
+
+6- Crie dentro da pasta desse app um novo arquivo e nomei-o como "urls.py", dentro dele você vai importar o comando "path" da biblioteca django.urls:
+	==> from django.urls import path
+
+7- Ainda no arquivo "urls.py", você também ira importar todo o arquivo "views.py" usando o seguinte importe:
+	==> from .views import *
+
+8- Continuando no arquivo "urls.py", crie uma tupla usando o comando urlpatterns, e dentro dele registre um caminho usando o comando "path", dentro do path você passará 2 parâmetros, o primeiro é o que define a URL que o usuário vai acessar no navegador para poder abrir a página do HTML e a segunda é qual função dentro do arquivo "views.py" que você criou será executada:
+	==> urlpatterns = [
+    		path('apresentacao/', saudacao)
+	    ]
+
+9- Agora DENTRO DA PASTA DO PROJETO procure o arquivo "urls.py", nele procure a linha que está fazendo o seguinte importe "from django.urls import path". Ao final dele você vai acrescentar uma vírgula e o comando "include", ficando dessa maneira:
+	==> from django.urls import path, include
+
+10- Ainda no arquivo "urls.py" do projeto, adicione um novo "path"(caminho) na tupla(lista) "urlpatterns" já existente. Nesse path você vai colocar o nome do seu app com uma "/"(barra) no final, no meu exemplo o meu app se chama "core", para ficar como caminho inicial, em seguida vai incluir o arquivo urls do seu app usando o comando include, e você deve informar o diretório desse urls, seguindo a pasta "apps"(caso tenha criado), depois a pasta do app, no meu exemplo foi "core", e por fim o nome do arquivo, que é urls:
+	==> path('core/', include('apps.core.urls'))
+
+	No final ficará assim:
+	==> urlpatterns = [
+    			path('admin/', admin.site.urls),
+    			path('core/', include('apps.core.urls'))
+		]
+
+11- Por fim, suba o servidor e acesse a url "http://127.0.0.1:8000/core/apresentacao" e irá lhe aparecer a página web do HTML criado no começo.

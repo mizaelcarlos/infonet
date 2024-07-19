@@ -1,0 +1,17 @@
+<html>
+    <body>
+        <h3>Formulário de Vagas</h3>
+
+        <a href="{% url "pg_criar_empresa" %}">
+            <button>+ Empresa</button>
+        </a>
+
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ formulario.as_p }}
+            <button type="submit">Salvar</button>
+            <a href="{% url "pg_inicial" %}"><button type="reset">Cancelar</button></a>
+        </form>
+
+    </body>
+</html>

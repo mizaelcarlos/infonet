@@ -1,0 +1,25 @@
+<html>
+    <body>
+        <a href="{% url "pg_inicial" %}"><button>Voltar</button></a>
+
+        <h2>
+            Detalhes da Vaga:
+        </h2>
+
+        <p>
+            {{ vaga.titulo }}
+        </p>
+        <p>
+            <img src="{{ vaga.capa.url }}" width="300" height="auto">
+        </p>
+        <p>
+            {{ vaga.descricao }}
+        </p>
+        <p>
+            {{ vaga.empresa.nome }}
+        </p>
+        <p>
+            <a href="{{ vaga.edital.url }}" target="_blank">Baixe aqui o edital</a>
+        </p>
+    </body>
+</html>

@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{% static "style-formularios.css" %}">
+        <title>Formulário Empresa</title>
+    </head>
+    <body>
+        <a href="{% url "pg_inicial" %}">
+            <button>Voltar</button>
+        </a>
+        <h2>Formulário Empresa</h2>
+
+        <form method="post">
+            {% csrf_token %}
+            {{ form_empresa.as_p }}
+            <button type="submit">Salvar</button>
+            <a href="{% url "pg_inicial" %}">
+                <button type="button">Cancelar</button>
+            </a>
+        </form>
+
+        <h2>Lista de Empresas</h2>
+
+        {% for empresa in empresas %}
+            <div class="card-formulario">
+                <span>{{ empresa.razao_social }}</span>
+                <span><b>CNPJ:</b> {{ empresa.cnpj }}</span>
+                <div class="btns_formulario">
+                    <a href="{% url "pg_editar_empresa" empresa.id %}">
+                        <span>Editar Empresa</span>
+                    </a>
+                    <a href="{% url "pg_excluir_empresa" empresa.id %}">
+                        <span>Excluir Empresa</span>
+                    </a>
+                </div>
+            </div>
+        {% endfor %}
+
+    </body>
+</html>

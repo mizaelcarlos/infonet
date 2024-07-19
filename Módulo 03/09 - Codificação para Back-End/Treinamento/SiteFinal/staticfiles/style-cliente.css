@@ -1,0 +1,17 @@
+.card-cliente{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #000;
+    width: fit-content;
+    align-items: center;
+}
+
+img{
+    border: 1px solid #000;
+}
+
+.btns_cliente{
+    display: flex;
+    flex-direction: row;
+    column-gap: 20px;
+}

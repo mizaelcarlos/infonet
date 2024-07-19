@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{% static "style-formularios.css" %}">
+        <title>Formulário Serviço</title>
+    </head>
+    <body>
+        <a href="{% url "pg_inicial" %}">
+            <button>Voltar</button>
+        </a>
+
+        <a href="{% url "pg_criar_categoria" %}">
+            <button>+ Categoria</button>
+        </a>
+
+        <h2>Formulário Serviço</h2>
+
+        <form method="post">
+            {% csrf_token %}
+            {{ form_servico.as_p }}
+            <button type="submit">Salvar</button>
+            <a href="{% url "pg_inicial" %}">
+                <button type="button">Cancelar</button>
+            </a>
+        </form>
+
+        <h2>Lista de Serviços</h2>
+
+        {% for servico in servicos %}
+            <div class="card-formulario">
+                <span>{{ servico.tipo_servico }}</span>
+                <span>R$ {{ servico.valor_servico }}</span>
+                <span><b>Empresa:</b> {{ servico.empresa }}</span>
+                <span><b>Categoria:</b> {{ servico.categoria }}</span>
+                <div class="btns_formulario">
+                    <a href="{% url "pg_editar_servico" servico.id %}">
+                        <span>Editar Serviço</span>
+                    </a>
+                    <a href="{% url "pg_excluir_servico" servico.id %}">
+                        <span>Excluir Serviço</span>
+                    </a>
+                </div>
+            </div>
+        {% endfor %}
+
+    </body>
+</html>

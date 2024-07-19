@@ -1,0 +1,65 @@
+Passo a Passo Comandos Extras do Git
+
+1.0 - Navegar entre versões do código: 
+1.1 - Caso queira ver o histórico de commits(alterações) do seu repositório, rode o comando abaixo. Quando aparecer o log de históricos, eles são organizados de cima para baixo na ordem decrescente, ou seja, o último commit feito estará como HEAD@{0}, o penúltimo estará HEAD@{1}, e assim por diante:
+	==> git reflog
+
+1.2 - Se você precisa desfazer as alterações do commit que você fez, basta listar o histórico com o comando no passo acima, em seguida copie o código do histórico que você deseja restaurar e voltar para aquele ponto do projeto e digitar o comando abaixo juntamente desse código do histórico:
+	==> git reset --hard [código do histórico]
+	No meu exemplo vou rodar o comando:
+	==> git reset --hard 0a67678
+	Para voltar para uma versão mais atual, basta usar o mesmo comando então o código voltará do passado para o presente.
+
+1.3 - Quando você retrocede um commit, os arquivos do projeto local vão voltar ao que estavam no passado, entretanto as últimas alterações que você havia subido para o Github ainda estaram lá, para subir as alterações depois que você voltou um commit você deve dar um novo comando "add", "commit" e por fim "push":
+	==> git add .
+	==> git commit -m "texto do commit"
+	==> git push
+	Caso o git push ocorra um erro informando que a branch local está desatualizada se comparada a branch que está no Github, force o push para subir as alterações:
+	==> git push --force
+
+
+
+2.0 - Trabalhar com branchs:
+2.1 - Para saber quantas e quais branchs estão criadas no seu projeto, digite o comando abaixo, ele vai retornar uma lista com os nomes das branchs do seu projeto. A branch que está selecionada no momento estará na cor verde:
+	==> git branch
+
+2.2 - Caso queira criar uma nova branch, digite o comando abaixo:
+	==> git branch nome_da_branch
+
+2.3 - Se quiser trabalhar em outra branch, você precisa definir ela como selecionada, para isso rode o comando. Se concluido, a mensagem "Switched to branch nome_da_branch" vai aparecer:
+	==> git checkout nome_da_branch
+
+2.4 - Após isso vá até os arquivos do projeto local e altere algum, feito isso, rode os comandos abaixo:
+	==> git add .
+	==> git commit -m "texto do commit"
+	==> git push
+	Certamente ao rodar esse último comando vai aparecer o erro "fatal: The current branch stage has no upstream branch.", significa que a branch stage está selecionada no terminal do git, entretando ela não está definida como a branch que será enviado as alterações, então precisa rodar o comando para definir que a nova branch vai receber os proximos comandos:
+	==> git push --set-upstream origin nome_da_branch
+	Feito isso, vá ate o site do Github e atualize a página. Abaixo do título do repositório você verá um botão com o icone de uma ramificação e a palavra "master" ao lado, clique nele e no menu suspenso que aparecer clique na nova branch que você criou e lá estará o mesmo projeto porém com as novas alterações que fez, caso volte pra branch "master", ela não terá as últimas alterações.
+
+
+
+3.0 - Unir(merge) uma branch com a principal:
+3.1 - Primeiramente você precisa estar com a branch principal selecionada, para isso rode o comando. Isso fará com que os arquivos locais alterem para os arquivos que estão na branch master:
+	==> git checkout master
+
+3.2 - Agora para verificar se está selecionado a branch "master", rode o comando:
+	==> git branch
+
+3.3 - Agora que você esta com a branch "master" selecionada, você vai rodar o comando que vai unir o código da branch que você informar para a branch atualmente selecionada, no caso a master:
+	==> git merge stage
+
+3.4 - Após rodar o comando anterior você pode verificar que os arquivos locais estão com as alterações da branch "stage", agora so falta enviar para o repositório remoto do Github essa união das alterações da stage na branch da master:
+	==> git push
+
+
+
+4.0 - Ignorar o envio de alguns arquivos para o repositório Remoto:
+4.1 - Caso você tenha colocado dentro da pasta do seu projeto algum arquivo que ti ajuda no projeto mas você não quer que ele seja enviado para o seu repositório remoto la no Github por algum motivo, você precisa criar o arquivo Git Ignore, para isso rode o comando:
+	==> touch .gitignore
+
+4.2 - Agora se você for até a pasta do projeto localmente, lá terá um novo arquivo chamado ".gitignore". Abra esse arquivo usando o bloco de notas para poder editar ele. Caso você tenha criado um arquivo pdf de nome "senhas.pdf", você precisa escrever exatamente o nome dele juntamente com a extensão pdf no bloco de notas do arquivo gitignore:
+	No .gitignore ==> senhas.pdf
+
+4.3 - E caso você queira que uma pasta inteira não seja enviada para o Github, basta colocar o nome da pasta seguido de uma /, desta maneira usando a pasta "senhas" ficaria assim:
+	No .gitignore ==> senhas/

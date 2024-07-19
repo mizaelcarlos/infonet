@@ -1,0 +1,83 @@
+1º - Passo a passo Criar Link - Prof. Ramon Ferreira
+
+
+> Levando em consideração que você já tem um projeto e um app, continue desse ponto.
+
+> Uma vez que você já aprendeu como criar um sistema de View + Template, preciso que você crie a pasta template e configure-a.
+
+1 - Crie um arquivo HTML como exemplo abaixo. Apenas um parágrafo e a palavra "Cadastro" dentro de um link porém não tem URL para onde deve ser levado o usuário ao clicar nele. Nomei-o como quiser, no exemplo vou usar "index.html":
+
+
+<html>
+    <body>
+        <p>
+            Esta é a página inicial
+        </p>
+
+	<a href="">Cadastro</a>
+    </body>
+</html>
+
+
+2 - Agora crie outro arquivo HTML usando o código abaixo. Tem a mesma do código anterior, a diferença é que essa página se refere a página de cadastro. Nomei-o como quiser, no exemplo vou usar "cadastro.html":
+
+
+<html>
+    <body>
+        <p>
+            Esta é a página de Cadastro
+        </p>
+
+	<a href="">Página inicial</a>
+    </body>
+</html>
+
+
+3 - Após isso vá até o arquivo "views.py". Crie uma função com o nome que desejar, no caso será usado "LinkInicial", passando(herdando) o objeto "request", pois ele contém informações sobre a solicitação HTTP feita pelo cliente ao servidor. E dentro da função coloque o comando "return" para retornar o comando "render" para renderizar uma página HTML, dentro vai passar como parâmetros o objeto "request" que tinhamos colocado dentro dos parênteses da função no início e o html da página inicial.
+	==> def LinkInicial(request):
+    		return render(request, "index.html")
+
+4 - Ainda no arquivo "views.py". Crie outra função com o nome que desejar, no caso será usado "LinkCadastro", também passando o objeto "request". E dentro da função coloque o comando "return" para retornar o comando "render" novamente, dentro vai passar como parâmetros o objeto "request" e o html da página cadastro.
+	==> def LinkCadastro(request):
+    		return render(request, "cadastro.html")
+
+5 - Na raiz do app criado, crie um novo arquivo e nomei-o como "urls.py", dentro dele você vai importar o comando "path" da biblioteca django.urls:
+	==> from django.urls import path
+
+6 - Ainda no arquivo "urls.py", você também ira importar todo o arquivo "views.py" usando o seguinte importe:
+	==> from .views import *
+
+7 - Continuando no arquivo "urls.py", crie uma tupla usando o comando urlpatterns, e dentro dele registre um caminho usando o comando "path", dentro do path você passará 3 parâmetros, o primeiro é o que define a URL que o usuário vai acessar no navegador para poder abrir a página do HTML, o segundo é qual função dentro do arquivo "views.py" que você criou será executada e o último será um nome/apelido que essa rota terá, assim poderemos chamar ela pelo nome dentro do template HTML. Os nomes "pagina_index" e "pagina_cadastro" podem ser qualquer um que você definir. Note que não coloquei um valor no primeiro parâmetro da rota da página inicial, portanto ela vai abrir assim que rodar o projeto:
+	==> urlpatterns = [
+    		path("", LinkInicial, name="pagina_index"),
+		path("cadastro", LinkCadastro, name="pagina_cadastro"),
+	    ]
+
+8 - Em seguida, volte para o arquivo HTML "index.html" criado no inicio do passo a passo. Altere-o para ficar desse jeito. Inserindo dentro das aspas do parâmetro "href" um comando escrito em Jinja que busca o nome da URL definida no arquivo "urls.py". Lembrando que no HTML da página inicial você fará o link que leva para a página Cadastro, e vice versa:
+
+
+<html>
+    <body>
+        <p>
+            Esta é a página inicial
+        </p>
+	<a href="{% url 'pagina_cadastro' %}">Cadastro</a>
+    </body>
+</html>
+
+
+9 - O segundo HTML "cadastro.html" será feito a mesma coisa, porém o link será direcionado para a página inicial:
+
+
+<html>
+    <body>
+        <p>
+            Esta é a página de Cadastro
+        </p>
+
+	<a href="{% url 'pagina_index' %}">Página inicial</a>
+    </body>
+</html>
+
+
+> Feito isso, pode rodar o projeto, não há necessidade de criar tabela, apenas rodar o projeto.

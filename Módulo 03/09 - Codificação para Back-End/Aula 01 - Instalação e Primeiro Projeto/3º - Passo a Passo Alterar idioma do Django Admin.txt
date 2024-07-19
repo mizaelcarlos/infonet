@@ -1,0 +1,9 @@
+>> 3º - Passo a Passo Alterar idioma do Django Admin - Prof. Ramon Ferreira
+
+Ao acessar o site do projeto e fazer login no Django Admin você percebe que ele está no idioma inglês, para mudar o idioma e o fuso horário faremos uma alteração em um arquivo do projeto.
+
+1- No Visual Studio acesse a pasta principal do projeto onde se encontra o arquivo "settings.py". Neste arquivo desça ate encontrar a variável "LANGUAGE_CODE", está nas ultimas linhas deste arquivo. Por padrão terá o valor 'en-us', basta trocar para 'pt-br'.
+
+2- Agora para alterar a hora(fuso horário) do projeto, ainda no arquivo "settings.py", procure a variável "TIME_ZONE", o valor padrão dela é 'UTC', altere para 'America/Fortaleza'.
+
+> Feito estas alterações basta rodar o projeto novamente, ou apenas atualize a página caso você não tinha derrubado a execução dele.
