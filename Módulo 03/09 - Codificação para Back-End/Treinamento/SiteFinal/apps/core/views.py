@@ -197,12 +197,8 @@ def ibge(request):
     except ValueError:
         print("A resposta não chegou com o formato esperado.")
 
-    dicionario = []
+    lista_municipios = []
     for  municipio in municipios:
-        dicionario.append(municipio)
+        lista_municipios.append(municipio)
 
-    contexto = {
-        "municipios": dicionario
-    }
-
-    return render(request, "ibge.html", contexto)
+    return render(request, "ibge.html", {"municipios": lista_municipios})

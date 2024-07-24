@@ -41,6 +41,7 @@ class OrdemServico(models.Model):
 class Produto(models.Model):
     nome = models.CharField(max_length=100)
     valor = models.DecimalField(decimal_places=2, max_digits=10)
+    descricao = models.TextField(null=True)
 
     def __str__(self):
         return self.nome
