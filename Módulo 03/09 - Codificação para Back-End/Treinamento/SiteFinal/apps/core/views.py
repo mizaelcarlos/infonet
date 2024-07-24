@@ -201,4 +201,4 @@ def ibge(request):
     for  municipio in municipios:
         lista_municipios.append(municipio)
 
-    return render(request, "ibge.html", {"municipios": lista_municipios})
+    return render(request, "ibge.html", {"municipios": lista_municipios, "requisicao" : requisicao})
