@@ -45,8 +45,8 @@ Caso eu queira consumir a rota que trás a listagem de todos os produtos , basta
 
 deverá ser inserido os parametros de cabeçalho na opção HEADERS
 
--Accept : application/json
--X-CSRF-TOKEN : colar token aqui
+- Accept : application/json
+- X-CSRF-TOKEN : colar token aqui
 
 Na opção Params, passar os parametros do produto a ser cadastrado na API:
 
