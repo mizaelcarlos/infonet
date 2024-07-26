@@ -7,6 +7,8 @@ Rodar comando a baixo no terminal, para gerar a chave da aplicação
   </code>
 </pre>
 
+![image](https://github.com/user-attachments/assets/12c18027-781a-4116-8d0e-b2069ffb7060)
+
 
 Para poder acessar e consumir as rotas geradas pela API , basta acessar o cmd ou terminal na pasta do projeto e iniciar o servidor usando o comando abaixo:
 
