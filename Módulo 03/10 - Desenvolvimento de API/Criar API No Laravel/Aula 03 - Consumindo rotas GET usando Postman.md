@@ -23,14 +23,14 @@ Caso eu queira consumir a rota que trás a listagem de todos os produtos , basta
 
 <pre class="language-php">
   <code class="language-php">
- [ php artisan serve](http://127.0.0.1:8000/produtos)
+   http://127.0.0.1:8000/produtos
   </code>
 </pre>
 
 
 ![image](https://github.com/user-attachments/assets/ed771ba1-3f21-4611-8269-ecb70fc5e620)
 
-Será mostrado no body do resultado na parte de baixo da tela, um JSON retornando todos os produtos cadastrados no sistema, EXEMPLO.
+Ao clicar em Send (enviar) ,será mostrado no body do resultado na parte de baixo da tela, um JSON retornando todos os produtos cadastrados no sistema, EXEMPLO.
 
 <pre class="language-php">
   <code class="language-php">
