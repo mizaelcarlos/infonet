@@ -10,6 +10,11 @@ Será criado uma classe chamada Produto.php no diretório app/Models
 
 No model Produto.php , inserir o código abaixo:
 
+protected $fillable = ['nome', 'valor' , 'descricao'];
+
+Ele se refere aos campos prenchiveis, que serão utilizados no cadastro de um produto.
+
+
 <pre class="language-php">
   <code class="language-php">
     namespace App\Models;
