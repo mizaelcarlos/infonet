@@ -8,11 +8,11 @@ Nesta demonstração, você começará criando um modelo que pode ser usado para
 
 Pré-requisitos , Para começar, eis o que você precisará:
 
-Laravel ultima versão
-Composer
-Postman
-XAMPP ou Wampserver
-Conhecimento básico de APIs e PHP
+- Laravel ultima versão
+- Composer
+- Postman
+- XAMPP ou Wampserver (Servidor Apache)
+- Conhecimento básico de APIs e PHP
 
 
 Comece criando um novo projeto Laravel usando composer:
