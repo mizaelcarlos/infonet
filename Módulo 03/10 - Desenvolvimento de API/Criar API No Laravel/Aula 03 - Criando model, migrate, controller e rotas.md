@@ -29,7 +29,9 @@ Para inserir as colunas nome, valor e descrição , use as variáveis abaixo:
   </code>
 </pre>
 
+A documentação do laravel é muito extensa e podemos usar , então tudo que está relacionado a adicão novas colunas numa migration , pode ser acessar através da URL a seguir:
 
+https://laravel.com/docs/11.x/migrations
 
 
 Para criar um controller relacionado ao model Produto use o comando abaixo:
