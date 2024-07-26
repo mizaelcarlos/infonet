@@ -12,19 +12,19 @@ No model Produto.php , inserir o código abaixo:
 
 <pre class="language-php">
   <code class="language-php">
-    <?php
+    namespace App\Models;
+  
+  use Illuminate\Database\Eloquent\Factories\HasFactory;
+  use Illuminate\Database\Eloquent\Model;
+  
+  class Produto extends Model
+  {
+      use HasFactory;
+  
+      protected $fillable = ['nome', 'valor' , 'descricao'];
+  }
 
-namespace App\Models;
-
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-
-class Produto extends Model
-{
-    use HasFactory;
-
-    protected $fillable = ['nome', 'valor' , 'descricao'];
-}
+  
 
   </code>
 </pre>
