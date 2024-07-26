@@ -33,6 +33,13 @@ A documentação do laravel é muito extensa e podemos usar , então tudo que es
 
 https://laravel.com/docs/11.x/migrations
 
+para aplicar as alterações no banco de dados relacionado a migrate acima, rode o comando abaixo no terminal:
+
+<pre class="language-php">
+  <code class="language-php">
+     php artisan migrate
+  </code>
+</pre>
 
 Para criar um controller relacionado ao model Produto use o comando abaixo:
 
