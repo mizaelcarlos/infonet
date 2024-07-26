@@ -48,35 +48,25 @@ deverá ser inserido os parametros de cabeçalho na opção HEADERS
 Accept : application/json
 X-CSRF-TOKEN : colar token aqui
 
-Na opção body, marcar o checkbox raw e passar o JSON da requisição que irá passar os parametros do produto a ser cadastrado na API:
+Na opção Params, passar os parametros do produto a ser cadastrado na API:
 
-<pre class="language-php">
-  <code class="language-php">
-   {
-    nome: "Garrafa Térmica",
-    valor: 50,
-    descricao: "Marca TERMOLAR"
-   }
-  </code>
-</pre>
+![image](https://github.com/user-attachments/assets/715d6995-75f2-4a12-aacf-ee29dc3f7603)
 
-
-![image](https://github.com/user-attachments/assets/c7963b17-0980-4036-9f45-ff2721254df1)
 
 Ao clicar em Send (enviar) ,será mostrado no body do resultado na parte de baixo da tela, um JSON retornando o produto cadastrado na API, EXEMPLO.
 
 <pre class="language-php">
   <code class="language-php">
-   {
+  {
     "status": true,
     "message": "Produto Criado com sucesso!",
     "produto": {
-        "nome": "teste",
-        "valor": "50",
-        "descricao": "teste",
-        "updated_at": "2024-07-25T14:27:18.000000Z",
-        "created_at": "2024-07-25T14:27:18.000000Z",
-        "id": 4
+        "nome": "Notebook",
+        "valor": "100",
+        "descricao": "LG",
+        "updated_at": "2024-07-26T12:27:30.000000Z",
+        "created_at": "2024-07-26T12:27:30.000000Z",
+        "id": 7
     }
 }
   </code>
