@@ -1,4 +1,13 @@
 
+Rodar comando a baixo no terminal, para gerar a chave da aplicação
+
+<pre class="language-php">
+  <code class="language-php">
+   php artisan key:generate
+  </code>
+</pre>
+
+
 Para poder acessar e consumir as rotas geradas pela API , basta acessar o cmd ou terminal na pasta do projeto e iniciar o servidor usando o comando abaixo:
 
 
