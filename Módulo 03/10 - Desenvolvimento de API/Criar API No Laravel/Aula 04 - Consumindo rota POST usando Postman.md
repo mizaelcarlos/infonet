@@ -22,7 +22,7 @@ Primeiro deverá ser gerado o token , usando a rota:
 
 <pre class="language-php">
   <code class="language-php">
-  php artisan serve](http://127.0.0.1:8000/token
+    http://127.0.0.1:8000/token
   </code>
 </pre>
 
