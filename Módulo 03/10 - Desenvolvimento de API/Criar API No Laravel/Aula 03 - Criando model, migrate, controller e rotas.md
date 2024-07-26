@@ -8,6 +8,27 @@ Criar primeiro model e migrate
 
 Será criado uma classe chamada Produto.php no diretório app/Models
 
+No model Produto.php , inserir o código abaixo:
+
+<pre class="language-php">
+  <code class="language-php">
+    <?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Produto extends Model
+{
+    use HasFactory;
+
+    protected $fillable = ['nome', 'valor' , 'descricao'];
+}
+
+  </code>
+</pre>
+
 Será criado também uma migrate relacionada ao model Produto no diretório database/migrations com um nome semelhante a:
 
 2024_07_25_134630_create_produtos_table.php
