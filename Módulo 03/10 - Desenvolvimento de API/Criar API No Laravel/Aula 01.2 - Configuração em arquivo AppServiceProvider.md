@@ -2,9 +2,7 @@ Edite o arquivo AppServiceProvider.php , que pode ser encontrado no diretório a
 
 <pre class="language-php">
   <code class="language-php">
-    <?php
-
-namespace App\Providers;
+    namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
@@ -27,6 +25,5 @@ class AppServiceProvider extends ServiceProvider
         Schema::defaultStringLength(191);
     }
 }
-
   </code>
 </pre>
