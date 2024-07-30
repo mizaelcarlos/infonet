@@ -1,4 +1,4 @@
-Para utilizar o método DELETE de um controller e poder remover registros do model Produto basta usar o código a seguir:
+Para utilizar o método DELETE e permitir atualizar registros do model Produto, basta alterar o método destroy do arquivo ProdutoController.php usando o código a seguir:
 
 <pre class="language-php">
   <code class="language-php">
@@ -27,7 +27,7 @@ Para consumir esse método DELETE no Postman basta, seguir conforme a imagem aba
 
 ![image](https://github.com/user-attachments/assets/5c3c2418-109c-4b12-b8f9-9d45f642edfa)
 
-Para utilizar o método PUT e permitir atualizar registros do model Produto, basta usar o código a seguir:
+Para utilizar o método PUT e permitir atualizar registros do model Produto, basta alterar o método update do arquivo ProdutoController.php usando o código a seguir:
 
 Primeiro use a classe Validator no seu arquivo ProdutoController.php
 
