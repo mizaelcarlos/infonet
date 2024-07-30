@@ -29,6 +29,15 @@ Para consumir esse método DELETE no Postman basta, seguir conforme a imagem aba
 
 Para utilizar o método PUT e permitir atualizar registros do model Produto, basta usar o código a seguir:
 
+Primeiro use a classe Validator no seu arquivo ProdutoController.php
+
+
+<pre class="language-php">
+  <code class="language-php">
+  use Illuminate\Support\Facades\Validator;
+  </code>
+</pre>
+
 <pre class="language-php">
   <code class="language-php">
     public function update(Request $request, $id)
@@ -57,3 +66,11 @@ Para utilizar o método PUT e permitir atualizar registros do model Produto, bas
     }
   </code>
 </pre>
+
+Para consumir esse método PUT no Postman basta, seguir conforme a imagem abaixo:
+
+![image](https://github.com/user-attachments/assets/dd14a5c7-ba48-4be6-b966-dad4342d6217)
+
+![image](https://github.com/user-attachments/assets/e25372db-abff-437d-9f10-8b4b76042c97)
+
+
