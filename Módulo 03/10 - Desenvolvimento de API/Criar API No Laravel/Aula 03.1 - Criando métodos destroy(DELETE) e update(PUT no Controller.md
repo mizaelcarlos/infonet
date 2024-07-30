@@ -67,6 +67,15 @@ Primeiro use a classe Validator no seu arquivo ProdutoController.php
   </code>
 </pre>
 
+Após isso , basta configurar no arquivo de rotas web.php a rota para esse método:
+
+<pre class="language-php">
+  <code class="language-php">
+    Route::put('/produtos/{id}', [ProdutoController::class, 'update']);
+  </code>
+</pre>
+
+
 Para consumir esse método PUT no Postman basta, seguir conforme a imagem abaixo:
 
 ![image](https://github.com/user-attachments/assets/dd14a5c7-ba48-4be6-b966-dad4342d6217)
