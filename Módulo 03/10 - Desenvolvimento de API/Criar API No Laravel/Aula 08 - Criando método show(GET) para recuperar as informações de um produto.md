@@ -28,3 +28,6 @@ Após isso , basta inserir a rota no arquivo web.php
 
 Para testar o método basta usar o postman conforme a imagem abaixo:
 
+![image](https://github.com/user-attachments/assets/714fc7e3-16fb-4a74-b5a2-a14b245ef243)
+
+
