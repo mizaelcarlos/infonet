@@ -109,7 +109,7 @@ No model Empresa.php , insira o código abaixo:
       {
           use HasFactory;
       
-          protected $fillable = ['razaoSocial', 'cnpj'];
+          protected $fillable = ['razao_social', 'cnpj'];
       
           public function servicos()
           {
