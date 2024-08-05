@@ -60,8 +60,6 @@ Depois, implemente os métodos register e login no controlador. Aqui está um ex
 
 <pre class="language-php">
   <code class="language-php">
-    <?php
-
       namespace App\Http\Controllers;
       
       use Illuminate\Http\Request;
