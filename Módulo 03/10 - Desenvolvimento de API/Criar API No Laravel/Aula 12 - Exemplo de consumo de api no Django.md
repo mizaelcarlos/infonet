@@ -1,3 +1,15 @@
+No arquivo urls.py insira a rota abaixo:
+
+<pre class="language-php">
+  <code class="language-php">
+      path("token", RetornaToken, name="token"),
+  </code>
+</pre>
+
+
+
+No arquivo views.py insira os métodos abaixo:
+
 <pre class="language-php">
   <code class="language-php">
       from django.shortcuts import render, redirect
