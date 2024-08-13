@@ -1,0 +1,81 @@
+{% load static %}
+  <!DOCTYPE html>
+  <html lang="en">
+      <head>
+          <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <link rel="stylesheet" href="{% static "style-formularios.css" %}">
+          <title>Formulário Serviço</title>
+      </head>
+      <body>
+          <a href="{% url "pg_inicial" %}">
+              <button>Voltar</button>
+          </a>
+  
+          <a href="{% url "pg_criar_categoria" %}">
+              <button>+ Categoria</button>
+          </a>
+  
+          <h2>Formulário Serviço</h2>
+  
+          <form method="post">
+              {% csrf_token %}
+              <p>
+              <label for="tipo">Tipo servico:</label>
+              <input type="text" name="tipo" maxlength="100" required="" id="tipo">
+              </p>
+                  
+                  
+              <p>
+              <label for="valor">Valor servico:</label>
+              <input type="number" name="valor" step="0.01" required="" id="valor">
+              </p>
+                  
+                  
+              <p>
+              <label for="id_empresa">Empresa:</label>
+              <select name="empresa_id" required="" id="empresa_id">
+                  <option value="" selected=""></option>
+                  {% for empresa in empresas %}
+                      <option value="{{ empresa.id }}">{{ empresa.razaoSocial }}</option>
+                  {% endfor %}
+              </select>
+              </p>
+                  
+                  
+              <p>
+              <label for="id_categoria">Categoria:</label>
+              <select name="categoria_id" required="" id="categoria_id">
+                  <option value="" selected=""></option>
+                  {% for categoria in categorias %}
+                      <option value="{{ categoria.id }}">{{ categoria.tipo }}</option>
+                  {% endfor %}
+              </select>
+              </p>
+              <button type="submit">Salvar</button>
+              <a href="{% url "pg_inicial" %}">
+                  <button type="button">Cancelar</button>
+              </a>
+          </form>    
+  
+          <h2>Lista de Serviços</h2>
+  
+          {% for servico in servicos %}
+              <div class="card-formulario">
+                  <span>{{ servico.tipo }}</span>
+                  <span>R$ {{ servico.valor }}</span>
+                  <span><b>Empresa:</b> {{ servico.empresa.razaoSocial }}</span>
+                  <span><b>Categoria:</b> {{ servico.categoria.tipo }}</span>
+                  <div class="btns_formulario">
+                      <a href="{% url "pg_editar_servico" servico.id %}">
+                          <span>Editar Serviço</span>
+                      </a>
+                      <a href="{% url "pg_excluir_servico" servico.id %}">
+                          <span>Excluir Serviço</span>
+                      </a>
+                  </div>
+              </div>
+          {% endfor %}
+  
+      </body>
+  </html>
