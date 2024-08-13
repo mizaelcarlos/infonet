@@ -86,6 +86,34 @@ No arquivo views.py insira os métodos abaixo:
                     print("A resposta não é um JSON válido.")
             else:
                 return HttpResponse('Erro ao consumir a API: ', response.status_code)
+
+      def ExcluirCategoria(request, id_categoria):
+          url = 'http://127.0.0.1:9000/api/categorias/' + str(id_categoria) # Substitua pela URL da API real
+      
+          obter_token = RetornaToken(request)
+          conteudo_bytes = obter_token.content  # Obtém o conteúdo como bytes
+          token = conteudo_bytes.decode('utf-8') 
+      
+          # Cabeçalhos que você deseja enviar com a solicitação
+          headers = {
+              'Authorization': 'Bearer ' + token,
+              'Content-Type': 'application/json'
+          }
+          
+          if request.method == "GET":             
+              # Fazendo a solicitação DELETE
+              response = requests.delete(url, headers=headers)
+      
+              # Obtendo o conteúdo da resposta
+              
+              if response.status_code in [200]:
+                  try:
+                      return redirect("pg_criar_categoria")
+                  except requests.JSONDecodeError:
+                      print("A resposta não é um JSON válido.")
+              else:
+                  return HttpResponse('Erro ao consumir a API: ', response.status_code)
+          
     
 
   </code>
