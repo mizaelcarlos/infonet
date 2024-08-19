@@ -5,6 +5,8 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="{% static "style-formularios.css" %}">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="{% static 'js/validacoes.js' %}"></script>
         <title>Formulário Categoria</title>
     </head>
     <body>
@@ -15,7 +17,10 @@
 
         <form method="post">
             {% csrf_token %}
-            {{ form_categoria.as_p }}
+            <p>
+            <label for="id_tipo">Tipo:</label>
+            <input type="text" name="tipo" maxlength="100" required="" id="id_tipo" value="{{ categoria.tipo }}">  
+            </p>
             <button type="submit">Salvar</button>
             <a href="{% url "pg_criar_servico" %}">
                 <button type="button">Cancelar</button>
@@ -31,12 +36,11 @@
                     <a href="{% url "pg_editar_categoria" categoria.id %}">
                         <span>Editar Categoria</span>
                     </a>
-                    <a href="{% url "pg_excluir_categoria" categoria.id %}">
+                    <a href="{% url "pg_excluir_categoria" categoria.id %}" onclick="return confirm('Deseja realmente excluir?')">
                         <span>Excluir Categoria</span>
                     </a>
                 </div>
             </div>
         {% endfor %}
-
     </body>
 </html>

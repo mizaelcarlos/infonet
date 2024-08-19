@@ -25,7 +25,7 @@ class Servico(models.Model):
     tipo_servico = models.CharField(max_length=100)
     valor_servico = models.DecimalField(decimal_places=2, max_digits=10)
     empresa = models.ForeignKey(Empresa, on_delete=models.CASCADE)
-    categoria = models.ForeignKey(Categoria, on_delete=models.DO_NOTHING)
+    categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.tipo_servico

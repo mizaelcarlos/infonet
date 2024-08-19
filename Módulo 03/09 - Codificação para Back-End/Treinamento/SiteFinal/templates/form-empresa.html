@@ -26,7 +26,7 @@
 
         {% for empresa in empresas %}
             <div class="card-formulario">
-                <span>{{ empresa.razao_social }}</span>
+                <span>{{ empresa.razaoSocial }}</span>
                 <span><b>CNPJ:</b> {{ empresa.cnpj }}</span>
                 <div class="btns_formulario">
                     <a href="{% url "pg_editar_empresa" empresa.id %}">

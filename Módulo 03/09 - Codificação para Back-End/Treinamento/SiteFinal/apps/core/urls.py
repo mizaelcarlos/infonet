@@ -27,5 +27,6 @@ urlpatterns = [
 
     
     path("ibge", ibge, name="ibge"),
+    path("token", RetornaToken, name="token"),
 
 ]

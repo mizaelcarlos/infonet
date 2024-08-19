@@ -1,0 +1,99 @@
+Criar projeto usando ultima versão do Laravel, use o comando abaixo:
+
+ composer create-project laravel/laravel nome_do_projeto
+
+para fazer conexão do banco de dados com o projeto , edite as seguinte informações do arquivo .env abaixo:
+
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=api
+DB_USERNAME=root
+DB_PASSWORD=
+
+lembrando que as configurações acima estão relacionadas ao SGBD MYSQL
+
+Criar primeiro model e migrate
+
+php artisan make:model Produto -m
+
+Será criado uma classe chamada Produto.php no diretório app/Models
+
+Será criado também uma migrate relacionada ao model Produto no diretório database/migrations com um nome semelhante a:
+
+2024_07_25_134630_create_produtos_table.php
+
+Para inserir as colunas nome, valor e descrição , use as variáveis abaixo:
+
+$table->string('nome');
+$table->integer('valor');
+$table->longText('descricao');
+
+Para criar um controller relacionado ao model Produto use o comando abaixo:
+
+php artisan make:controller ProdutoController --model=Produto
+
+Abra o model Produto no diretório app/Models e insira o código seguinte abaixo de :
+
+ use HasFactory;
+
+protected $fillable = ['nome', 'valor' , 'descricao'];
+
+Abra o controlador ProdutoController.php no diretório app/Http/Controllers 
+
+Para configurar o método index , para consultar todos os produtos do banco de dados e retornar um Json , utilize o código abaixo:
+
+
+ public function index()
+    {
+        $produtos = Produto::all();
+
+        return response()->json([
+            'status' => true,
+            'produtos' => $produtos
+        ]);
+    }
+
+Para criar uma rota e tornar a listagem feita anteriormente acessível , para que seja consultada por algum outro programa ou até mesmo pelo navegador , acesse o arquivo web.php que se encontra no diretório routes/
+
+no inicio dele importe o controlador criado chamado de ProdutoController , colocando abaixo de :
+
+use Illuminate\Support\Facades\Route;
+
+O seguinte código:
+
+
+use App\Http\Controllers\ProdutoController;
+
+Agora vamos criar a nossa primeira rota GET, com o código abaixo:
+
+Route::get('/produtos', [ProdutoController::class, 'index']);
+
+Agora vamos implementar o nosso método store, que irá permitir cadastrar novos produtos por meio do método POST.
+
+Insira o código abaixo no método store do controlador ProdutoController
+
+public function store(Request $request)
+    {
+        $produto = Produto::create($request->all());
+
+        return response()->json([
+            'status' => true,
+            'message' => "Produto Criado com sucesso!",
+            'produto' => $produto
+        ], 200);
+    }
+
+após isso insira a rota POST no arquivo web.php na 
+
+Route::post('/produtos', [ProdutoController::class, 'store']);
+
+Para que possamos consumir as duas rotas criadas da API , precisamos gerar um token para passar no cabeçalho da requisição, esse token é gerado pela seguinte rota que tem que ser inserida no arquivo web.php
+
+Route::get('/token', function () {
+    return csrf_token(); 
+});
+
+Após isso gere a chave secreta da aplicação no arquivo .env usando o comando abaixo no terminal:
+ 
+php artisan key:generate
