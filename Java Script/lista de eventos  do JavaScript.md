@@ -27,9 +27,9 @@
 #### 5. Eventos de Arrastar e Soltar
    ##### - drag: Disparado quando um item é arrastado.
    ##### - dragstart: Disparado quando o arrasto de um item começa.
-   - dragend: Disparado quando o arrasto de um item termina.
-   dragover: Disparado quando um item arrastado está sobre um alvo.
-   drop: Disparado quando um item arrastado é solto em um alvo.
-6. Eventos de Modificação de Página
-   resize: Disparado quando a janela é redimensionada.
-   scroll: Disparado quando a página é rolada.
+   ##### - dragend: Disparado quando o arrasto de um item termina.
+   ##### dragover: Disparado quando um item arrastado está sobre um alvo.
+   ##### drop: Disparado quando um item arrastado é solto em um alvo.
+#### 6. Eventos de Modificação de Página
+   ##### resize: Disparado quando a janela é redimensionada.
+   ##### scroll: Disparado quando a página é rolada.
