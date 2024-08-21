@@ -2,7 +2,7 @@
 
 Você pode especificar a linguagem do código para destacar a sintaxe. Basta adicionar o nome da linguagem logo após os três acentos iniciais.
 
-#### Exemplo para HTML:
+#### Código HTML com JavaScript:
 
 ```markdown
 <button id="btnClick">Clique aqui</button>
