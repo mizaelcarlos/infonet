@@ -5,7 +5,6 @@ Você pode especificar a linguagem do código para destacar a sintaxe. Basta adi
 #### Exemplo para HTML:
 
 ```markdown
-```html
 <button id="btnClick">Clique aqui</button>
 <script>
   document.getElementById('btnClick').addEventListener('click', function() {
