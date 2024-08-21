@@ -5,6 +5,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="{% static "style-formularios.css" %}">
+        <script src="{% static 'js/validacoes_empresa.js' %}"></script>
         <title>Formulário Empresa</title>
     </head>
     <body>
@@ -13,7 +14,7 @@
         </a>
         <h2>Formulário Empresa</h2>
 
-        <form method="post">
+        <form method="post" id="form_empresa">
             {% csrf_token %}
             {{ form_empresa.as_p }}
             <button type="submit">Salvar</button>

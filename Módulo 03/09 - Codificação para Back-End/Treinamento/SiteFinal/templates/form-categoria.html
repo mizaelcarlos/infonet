@@ -1,37 +1,42 @@
+{% extends "base.html" %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="{% static "style-formularios.css" %}">
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+{% block titulo %}
         <script src="{% static 'js/validacoes.js' %}"></script>
         <title>Formulário Categoria</title>
-    </head>
-    <body>
+{% endblock %}
+{% block conteudo %}
         <a href="{% url "pg_criar_servico" %}">
             <button>Voltar</button>
         </a>
         <h2>Formulário Categoria</h2>
 
-        <form method="post">
+        <form method="post" id="form_categoria">
             {% csrf_token %}
             <p>
             <label for="id_tipo">Tipo:</label>
-            <input type="text" name="tipo" maxlength="100" required="" id="id_tipo" value="{{ categoria.tipo }}">  
+            <input type="text" name="tipo" maxlength="100"  id="tipo" value="{{ categoria.tipo }}">  
             </p>
-            <button type="submit">Salvar</button>
+            <button type="submit" class="btn btn-primary">Salvar</button>
             <a href="{% url "pg_criar_servico" %}">
-                <button type="button">Cancelar</button>
+                <button type="button" class="btn btn-danger">Cancelar</button>
             </a>
         </form>
 
         <h2>Lista de Categorias</h2>
-
-        {% for categoria in categorias %}
-            <div class="card-formulario">
-                <span>{{ categoria.tipo }}</span>
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Tipo</th>
+                <th scope="col">Opções</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for categoria in categorias %}
+              <tr>
+                <th scope="row">{{ categoria.id }}</th>
+                <td>{{ categoria.tipo }}</td>
+                <td>
                 <div class="btns_formulario">
                     <a href="{% url "pg_editar_categoria" categoria.id %}">
                         <span>Editar Categoria</span>
@@ -40,7 +45,9 @@
                         <span>Excluir Categoria</span>
                     </a>
                 </div>
-            </div>
-        {% endfor %}
-    </body>
-</html>
+            </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+{% endblock %}
