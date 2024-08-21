@@ -1,4 +1,4 @@
-### Bloco de Código com Destque de Sintaxe
+### 1 - Botão com alerta ao clicar
 
 Você pode especificar a linguagem do código para destacar a sintaxe. Basta adicionar o nome da linguagem logo após os três acentos iniciais.
 
@@ -6,6 +6,9 @@ Você pode especificar a linguagem do código para destacar a sintaxe. Basta adi
 
 ```markdown
 ```html
-<div>
-  <p>Olá, Mundo!</p>
-</div>
+<button id="btnClick">Clique aqui</button>
+<script>
+  document.getElementById('btnClick').addEventListener('click', function() {
+  alert('Botão clicado!');
+  });
+</script>
