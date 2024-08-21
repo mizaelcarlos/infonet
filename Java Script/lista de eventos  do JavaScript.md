@@ -3,8 +3,8 @@ Em JavaScript, eventos são ações ou ocorrências que ocorrem no navegador e p
 Aqui estão alguns eventos comuns em JavaScript:
 
 1. Eventos de Mouse
-   click: Disparado quando o usuário clica em um elemento.
-   dblclick: Disparado quando o usuário clica duas vezes rapidamente em um elemento.
+   - click: Disparado quando o usuário clica em um elemento.
+   - dblclick: Disparado quando o usuário clica duas vezes rapidamente em um elemento.
    mousedown: Disparado quando o usuário pressiona o botão do mouse sobre um elemento.
    mouseup: Disparado quando o usuário solta o botão do mouse sobre um elemento.
    mousemove: Disparado quando o usuário move o mouse sobre um elemento.
