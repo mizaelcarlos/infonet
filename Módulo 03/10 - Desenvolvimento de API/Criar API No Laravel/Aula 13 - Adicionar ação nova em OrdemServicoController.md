@@ -39,7 +39,7 @@
 
 <pre class="language-php">
   <code class="language-php">
-      php artisan migration
+      php artisan migrate
   </code>
 </pre>
 
