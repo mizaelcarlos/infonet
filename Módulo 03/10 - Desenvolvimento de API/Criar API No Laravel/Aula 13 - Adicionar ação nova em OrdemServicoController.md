@@ -39,7 +39,6 @@
 
 <pre class="language-php">
   <code class="language-php">
-      class OrdemServico extends Model
       php artisan migration
   </code>
 </pre>
