@@ -20,7 +20,7 @@
         public function up(): void
         {
             Schema::table('ordem_servicos', function (Blueprint $table) {
-                $table->boolean('status');
+                $table->boolean('status')->default(0);
         }
     
         /**
