@@ -1,7 +1,6 @@
 ## Alterar template com formulário de cadastro de cliente, inserindo apenas o enctype="multipart/form-data"
 
-<pre class="language-php">
-  <code class="language-php">
+
      <form method="post" id='form_cliente' enctype="multipart/form-data">
         {% csrf_token %}
         <p>
@@ -24,9 +23,7 @@
         <a href="{% url "pg_criar_cliente" %}">
             <button type="button"class='btn btn-danger'>Cancelar</button>
         </a>
-    </form>
-  </code>
-</pre>
+      </form>  
 
 ## A única parte que foi adicionada foi o trecho abaixo:
 
