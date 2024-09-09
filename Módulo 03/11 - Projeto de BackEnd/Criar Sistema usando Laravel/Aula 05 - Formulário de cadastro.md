@@ -93,7 +93,6 @@ Arquivo de rotas localizado na pasta routes/web.php
 
 Fomrulario de cadastro  contato/cadastrar.blade.php 
 
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
