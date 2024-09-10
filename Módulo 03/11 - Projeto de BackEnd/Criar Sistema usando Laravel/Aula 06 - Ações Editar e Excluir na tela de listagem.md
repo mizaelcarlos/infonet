@@ -87,11 +87,85 @@
 </pre>
 ### Após isso configure as rotas no arquivo routes/web.php 
 
-Route::get('/contato', [ContatoController::class, 'index'])->name('contato.index');
-Route::get('/contato/cadastrar', [ContatoController::class, 'create'])->name('contato.create');
-Route::get('/contato/editar/{id}', [ContatoController::class, 'edit'])->name('contato.edit');
-Route::post('/contato', [ContatoController::class, 'store'])->name('contato.salvar');
-Route::delete('/contato/{id}', [ContatoController::class, 'destroy'])->name('contato.destroy');
-Route::put('/contato/{id}', [ContatoController::class, 'update'])->name('contato.update');
-Route::get('/contato/{id}', [ContatoController::class, 'show'])->name('contato.show');
+<pre class="language-php">
+  <code class="language-php">
+    Route::get('/contato', [ContatoController::class, 'index'])->name('contato.index');
+    Route::get('/contato/cadastrar', [ContatoController::class, 'create'])->name('contato.create');
+    Route::get('/contato/editar/{id}', [ContatoController::class, 'edit'])->name('contato.edit');
+    Route::post('/contato', [ContatoController::class, 'store'])->name('contato.salvar');
+    Route::delete('/contato/{id}', [ContatoController::class, 'destroy'])->name('contato.destroy');
+    Route::put('/contato/{id}', [ContatoController::class, 'update'])->name('contato.update');
+    Route::get('/contato/{id}', [ContatoController::class, 'show'])->name('contato.show');
+  </code>
+</pre>
+
+### Após isso editar o arquivo resource/contato/index.blade.php , conforme abaixo:
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Lista de Contatos</h2>
+
+    <table class="table">
+        <thead>
+            <tr>
+            <th scope="col">ID</th>
+            <th scope="col">EMAIL</th>
+            <th scope="col">TELEFONE</th>
+            <th scope="col">OPÇÕES</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($contatos as $contato)
+                <tr>
+                    <th scope="row">{{ $contato->id }}</th>
+                    <td>{{ $contato->email }}</td>
+                    <td>{{ $contato->telefone }}</td>
+                    <td>
+                        <div class="btns_formulario">
+                            <a href="{{ route('contato.edit', $contato->id) }}">
+                                <span>Editar</span>
+                            </a>
+                            <form action="{{ route('contato.destroy', $contato->id) }}" method="POST" style="display:inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit">Excluir</button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                @endforeach
+        </tbody>
+    </table>
+</body>
+</html>
+
+### Em seguida crie o arquivo resource/contato/editar.blade.php
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Cadastrar Contato</title>
+</head>
+<body>
+    <form action="{{ route('contato.update',$contato->id) }}" method="post">
+        @csrf
+        @method('PUT')
+        <label for="">Email: </label>
+        <input type="text" name="email" id="email" value="{{ $contato->email }}">
+        <label for="">Telefone</label>
+        <input type="text" name="telefone" id="telefone" value="{{$contato->telefone  }}">
+        <button type="submit">Salvar</button>
+    </form>
+</body>
+</html>
+
+
 
