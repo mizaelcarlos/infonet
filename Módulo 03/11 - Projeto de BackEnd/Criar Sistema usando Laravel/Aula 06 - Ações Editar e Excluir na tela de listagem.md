@@ -137,7 +137,7 @@
     </table>
 
 
-### Em seguida crie o arquivo resource/contato/editar.blade.php
+### Em seguida crie o arquivo resource/contato/editar.blade.php e insira esse formulário nele:
 
 
     <form action="{{ route('contato.update',$contato->id) }}" method="post">
