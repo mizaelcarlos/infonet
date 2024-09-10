@@ -2,7 +2,6 @@ Controller:
 
 <pre class="language-php">
   <code class="language-php">
-    <?php
 
       namespace App\Http\Controllers;
       
