@@ -101,8 +101,7 @@
 
 ### Após isso editar o arquivo resource/contato/index.blade.php , conforme abaixo:
 
-<html lang="en">
-<body>
+
     <h2>Lista de Contatos</h2>
 
     <table class="table">
@@ -136,13 +135,11 @@
                 @endforeach
         </tbody>
     </table>
-</body>
-</html>
+
 
 ### Em seguida crie o arquivo resource/contato/editar.blade.php
 
-<html lang="en">
-<body>
+
     <form action="{{ route('contato.update',$contato->id) }}" method="post">
         @csrf
         @method('PUT')
@@ -152,8 +149,7 @@
         <input type="text" name="telefone" id="telefone" value="{{$contato->telefone  }}">
         <button type="submit">Salvar</button>
     </form>
-</body>
-</html>
+
 
 
 
