@@ -102,12 +102,6 @@
 ### Após isso editar o arquivo resource/contato/index.blade.php , conforme abaixo:
 
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
 <body>
     <h2>Lista de Contatos</h2>
 
@@ -148,12 +142,6 @@
 ### Em seguida crie o arquivo resource/contato/editar.blade.php
 
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Cadastrar Contato</title>
-</head>
 <body>
     <form action="{{ route('contato.update',$contato->id) }}" method="post">
         @csrf
