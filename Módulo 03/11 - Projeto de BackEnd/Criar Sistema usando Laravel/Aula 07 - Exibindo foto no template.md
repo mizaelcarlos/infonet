@@ -1,4 +1,4 @@
-##Antes de tudo deverá ser resolvido a qustão do upload da foto, vou mostrar abaixo o exemplo de um formulaário:
+## Antes de tudo deverá ser resolvido a qustão do upload da foto, vou mostrar abaixo o exemplo de um formulaário:
 
 
         <h1>Editar Contato</h1>
