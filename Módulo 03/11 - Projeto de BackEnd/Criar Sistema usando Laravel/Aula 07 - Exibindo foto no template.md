@@ -52,8 +52,8 @@
   </code>
 </pre>
 
-Após isso recupere a foto no seu template usando a tag img conforme abaixo:
+Após isso recupere a foto no seu template usando a tag img passando o valor abaixo para o src conforme abaixo:
 
 
-###<img src="{{  asset('storage/' . $contato->foto) }}" alt="" width="100" height="100">
+### src="{{  asset('storage/' . $contato->foto) }}"
 
