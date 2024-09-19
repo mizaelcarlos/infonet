@@ -30,7 +30,12 @@
 
 ### Após isso basta colocar a rota num botão ou link para poder ser acessada, conforme o exemplo abaixo:
 
-<a href="{{ route('mensagem.index') }}">Contato</a>
+<pre class="language-php">
+  <code class="language-php">
+      <a href="{{ route('mensagem.index') }}">Contato</a>
+  </code>
+</pre>
+
 
 
 
