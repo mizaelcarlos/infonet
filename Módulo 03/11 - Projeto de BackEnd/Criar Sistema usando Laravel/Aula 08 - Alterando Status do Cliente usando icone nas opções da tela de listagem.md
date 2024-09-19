@@ -33,12 +33,10 @@
 ## Após isso nas opções da listagem de clientes , insira a opção para ativar/inativar o cliente usando um icone pra ação do formulário abaixo:
 ## Essa ação ficará abaixo da opção de excluir:
 
-<pre class="language-php">
-  <code class="language-php">
+
       <form action="{{ route('cliente.atualizarStatus', $cliente>id) }}" method="POST" style="display:inline;">
           @csrf
           @method('POST')
           <button type="submit">Ativar/Inativar</button>
       </form>
-  </code>
-</pre>
+
