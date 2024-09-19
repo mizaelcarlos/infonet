@@ -20,7 +20,7 @@
 
 ### Após isso crie o template na pasta contato/index.blade.php com o conteúdo abaixo
 
-- <form action="" method="post">
+-- <form action="" method="post">
     <label for="">Nome</label>
     <input type="text" name="nome" id="nome">
     <label for="">Email</label>
