@@ -20,7 +20,7 @@
 
 ### Após isso crie o template na pasta contato/index.blade.php com o conteúdo abaixo
 
-```markdown
+
     <form action="" method="post">
         <label for="">Nome</label>
         <input type="text" name="nome" id="nome">
@@ -33,7 +33,8 @@
 
 ### Após isso basta colocar a rota num botão ou link para poder ser acessada, conforme o exemplo abaixo:
 
-
+```markdown
+  <a href="{{ route('mensagem.index') }}">Contato</a>
 
 
 
