@@ -1,6 +1,6 @@
 ### Criar primeiro o controller chamado de ContatoController
 
-#### Após isso criar o método index dentro do  ContatoController.php
+### Após isso criar o método index dentro do  ContatoController.php
 
 <pre class="language-php">
   <code class="language-php">
@@ -10,7 +10,7 @@
   </code>
 </pre>
 
-## Após isso crie a rota do arquivo routes/web.php
+### Após isso crie a rota do arquivo routes/web.php
 
 <pre class="language-php">
   <code class="language-php">
@@ -18,8 +18,9 @@
   </code>
 </pre>
 
-## Após isso crie o template na pasta contato/index.blade.php com o conteúdo abaixo
-<form action="" method="post">
+### Após isso crie o template na pasta contato/index.blade.php com o conteúdo abaixo
+
+- <form action="" method="post">
     <label for="">Nome</label>
     <input type="text" name="nome" id="nome">
     <label for="">Email</label>
@@ -30,11 +31,9 @@
 
 ### Após isso basta colocar a rota num botão ou link para poder ser acessada, conforme o exemplo abaixo:
 
-<pre class="language-php">
-  <code class="language-php">
-      <a href="{{ route('mensagem.index') }}">Contato</a>
-  </code>
-</pre>
+
+    -<a href="{{ route('mensagem.index') }}">Contato</a>
+
 
 
 
