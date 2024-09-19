@@ -20,22 +20,19 @@
 
 ### Após isso crie o template na pasta contato/index.blade.php com o conteúdo abaixo
 
-<pre class="language-php">
-  <code class="language-php">
-     <form action="" method="post">
-        <label for="">Nome</label>
-        <input type="text" name="nome" id="nome">
-        <label for="">Email</label>
-        <input type="text" name="email" id="email">
-        <label for="">Mensagem</label>
-        <textarea name="mensagem" id="" cols="30" rows="10"></textarea>
-    </form>
-  </code>
-</pre>
+```html
+<form action="" method="post">
+    <label for="">Nome</label>
+    <input type="text" name="nome" id="nome">
+    <label for="">Email</label>
+    <input type="text" name="email" id="email">
+    <label for="">Mensagem</label>
+    <textarea name="mensagem" id="" cols="30" rows="10"></textarea>
+</form>
 ### Após isso basta colocar a rota num botão ou link para poder ser acessada, conforme o exemplo abaixo:
 
-
-    -<a href="{{ route('mensagem.index') }}">Contato</a>
+```html
+<a href="{{ route('mensagem.index') }}">Contato</a>
 
 
 
