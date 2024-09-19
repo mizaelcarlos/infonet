@@ -6,17 +6,12 @@
 
 <pre class="language-php">
   <code class="language-php">
-      public function atualizarStatus(Request $request,$id){
-        $cliente = Cliente::find($id);
-        if($request->status == 0){
-            $cliente>status = 1;
-        }
-        else{
-            $cliente>status = 0;
-        }
-        $cliente>save();
+     public function atualizarStatus(Request $request,$id){
+        $contato = Contato::find($id);
+        $contato->status = true;
+        $contato->save();
 
-        return redirect()->route('cliente.index');
+        return redirect()->route('contato.index');
 
     }
   </code>
@@ -26,7 +21,7 @@
 
 <pre class="language-php">
   <code class="language-php">
-      Route::post('/cliente/{id}', [ClienteController::class, 'atualizarStatus'])->name('cliente.atualizarStatus');
+      Route::post('/contato/{id}/ativar', [ContatoController::class, 'atualizarStatus'])->name('contato.atualizarStatus');
   </code>
 </pre>
 
@@ -34,9 +29,9 @@
 ## Essa ação ficará abaixo da opção de excluir:
 
 
-      <form action="{{ route('cliente.atualizarStatus', $cliente>id) }}" method="POST" style="display:inline;">
-          @csrf
-          @method('POST')
-          <button type="submit">Ativar/Inativar</button>
-      </form>
+      <form action="{{ route('contato.atualizarStatus', $contato->id) }}" method="POST" style="display:inline;">
+        @csrf
+        @method('POST')
+        <button type="submit">Ativar</button>
+    </form>
 
