@@ -29,13 +29,13 @@
     <label for="">Mensagem</label>
     <textarea name="mensagem" id="" cols="30" rows="10"></textarea>
 </form>
-
+```html
 
 ### Após isso basta colocar a rota num botão ou link para poder ser acessada, conforme o exemplo abaixo:
 
 ```html
 <a href="{{ route('mensagem.index') }}">Contato</a>
-
+```html
 
 
 
