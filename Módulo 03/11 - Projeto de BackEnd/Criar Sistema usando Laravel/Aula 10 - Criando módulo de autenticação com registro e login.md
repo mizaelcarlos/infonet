@@ -14,7 +14,7 @@
   </code>
 </pre>
 
-### Escolher a opção blaze e depois 0 
+### Escolher a opção blade e depois 0 
 
 #### Migrar o banco de dados:
 <pre class="language-php">
