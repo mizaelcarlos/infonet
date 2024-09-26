@@ -2,7 +2,7 @@
 
 ### Crie um diretorio dentro da pasta resources/views chamado de layouts e dentro dele crie o arquivo app.blade.php com o conteúdo abaixo:
 
-´´´ HTML
+```markdown
 
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -31,7 +31,7 @@
 
 #### No arquivo que deseja herdar do layout basta colocar o trecho abaixo e remover as tags html, head e body, conforme exemplo abaixo:
 
-´´´HTML
+```markdown
 
 @extends('layouts.app')
 
