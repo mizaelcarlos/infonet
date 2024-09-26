@@ -14,13 +14,7 @@
     @vite(['resources/js/app.js', 'resources/css/app.css'])
 </head>
 <body>
-    <main class="container mt-4">
         @yield('content')
-    </main>
-
-    <footer class="py-4 text-center bg-light">
-        <p>&copy; {{ date('Y') }} Meu App. Todos os direitos reservados.</p>
-    </footer>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
