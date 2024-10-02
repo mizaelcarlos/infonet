@@ -14,3 +14,6 @@ alter table nome_tabela drop column nome_coluna;
 
 insert into nome_tabela (coluna1,coluna2,coluna3) values (value1,value2,value3);
 
+Ex:
+
+INSERT INTO usuario (nome, sobrenome,email,senha,created_at,update_at) VALUES ('Mizael','Carlos','mizaelcarlos44@gmail.com','teste123','2024-10-02 07:57:00','2024-10-02 07:57:00');
