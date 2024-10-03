@@ -1,3 +1,6 @@
+### Biblioteca Municipal
+### Uma biblioteca municipal deseja implementar um sistema para gerenciar suas operações. O objetivo é controlar o acervo de livros, registrar os membros que podem fazer empréstimos e acompanhar o histórico de empréstimos e devoluções. A biblioteca precisa de uma solução que permita um fácil acesso às informações dos livros e dos membros, além de gerar relatórios sobre o uso do acervo.
+
 ### Sistema de Gestão de Vendas
 #### Uma loja de eletrônicos precisa de um sistema que facilite o gerenciamento das vendas e do relacionamento com os clientes. O objetivo é registrar cada venda realizada, acompanhar os produtos em estoque e manter um histórico das compras feitas pelos clientes. A loja deseja também oferecer promoções e descontos personalizados com base no histórico de compras.
 
