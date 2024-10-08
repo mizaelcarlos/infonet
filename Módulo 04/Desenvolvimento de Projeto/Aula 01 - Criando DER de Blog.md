@@ -4,5 +4,7 @@
 
 ### Gerar script de criação do banco de dados, com extensão .sql.
 
-### Criar Projeto Laravel sem migrações.
+### Usando a ferramenta Heidsql , criar o banco de dados blog , usando o script gerado anteriormente.
+
+### Criar Projeto Laravel chamado de blog sem migrações.
 
