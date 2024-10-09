@@ -1,5 +1,7 @@
 ### Criar Projeto Laravel
 
+### Criar o banco de dados blog no mysql e configurar .env
+
 ### Rodar a criação de migrations.
 
 ### Importar DER , e editar inserindo postagens e comentários relacionando com users.

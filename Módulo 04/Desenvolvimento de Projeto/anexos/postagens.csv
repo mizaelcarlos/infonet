@@ -1,0 +1,4 @@
+"id_publicacao","foto","titulo_prato","local","user_id","created_at","updated_at"
+"1","publicacao01.png","Titulo da Postagem 01","1","2023-02-22 09:15:55","2023-09-22 09:18:55"
+"2","publicacao02.png","Titulo da Postagem 02","1","2023-02-22 09:10:55","2023-02-22 09:16:55"
+"3","publicacao03.png","Titulo da Postagem 03","1","2023-05-22 09:13:55","2023-02-22 09:15:55"
