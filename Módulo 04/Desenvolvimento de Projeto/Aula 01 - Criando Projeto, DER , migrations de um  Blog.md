@@ -1,5 +1,7 @@
 ### Criar Projeto Laravel
 
+### Rodar a criação de migrations.
+
 ### Importar DER , e editar inserindo postagens e comentários relacionando com users.
 
 ### Gerar imagem do DER.
